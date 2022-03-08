@@ -1,0 +1,103 @@
+# ASP.NET
+
+# Build and test ASP.NET projects.
+# Add steps that publish symbols, save build artifacts, deploy, and more:
+# https://docs.microsoft.com/azure/devops/pipelines/apps/aspnet/build-aspnet-4
+
+trigger: 
+ - release
+ - staging
+ - production
+
+schedules:
+- cron: "0 3 * * Mon-Fri"
+  displayName: M-F 3:00 AM (UTC + 1) nightly build
+  branches:
+    include:
+    - master
+
+pool:
+  vmImage: 'windows-latest'
+
+variables:
+  solution: '**/*.sln'
+  buildPlatform: 'Any CPU'
+  buildConfiguration: 'Release'
+
+steps:
+- task: NuGetToolInstaller@1
+
+- task: NuGetCommand@2
+  inputs:
+    command: 'restore'
+    #restoreSolution: '$(solution)'
+    restoreSolution: '**/*.sln'
+    feedsToUse: 'config'
+    nugetConfigPath: 'nuget.config'
+
+- task: Assembly-Info-NetFramework@2
+  inputs:
+    Path: '$(Build.SourcesDirectory)'
+    FileNames: |
+      **\AssemblyInfo.cs
+
+      **\AssemblyInfo.vb
+    InsertAttributes: false
+    FileEncoding: 'auto'
+    WriteBOM: false
+    FileVersionNumber: '$(Build.BuildNumber)'
+    LogLevel: 'verbose'
+    FailOnWarning: false
+    DisableTelemetry: false
+
+- task: VSBuild@1
+  inputs:
+    solution: '$(solution)'
+    msbuildArgs: '/p:DeployOnBuild=true /p:WebPublishMethod=Package /t:Application /p:PackageAsSingleFile=false /p:SkipInvalidConfigurations=true /p:PackageLocation="$(build.artifactstagingdirectory)\\" /p:PackageTempRootDir=""'
+    platform: '$(buildPlatform)'
+    configuration: '$(buildConfiguration)'
+
+- task: CopyFiles@2
+  inputs:
+    SourceFolder: Files
+    Contents: |
+      **/* 
+      **\!node_modules/**/*
+      **\!.log
+      !**/Files/Integration/xml/*
+      !**/Files/Integration/Product import/*
+    TargetFolder: '$(build.artifactStagingDirectory)/Archive/Content/D_C/PackageTmp/Files'
+    #OverWrite: true
+
+- task: ArchiveFiles@2
+  inputs:
+    rootFolderOrFile: '$(build.artifactStagingDirectory)/Archive/Content/D_C/PackageTmp/*'
+    archiveType: 'zip'
+    archiveFile: '$(Build.ArtifactStagingDirectory)/Application.zip'
+    replaceExistingArchive: true
+
+- task: CmdLine@2
+  inputs:
+    script: |
+      rd /s /q Archive      
+      echo Removed archive folder
+    workingDirectory: '$(build.artifactstagingdirectory)'   
+
+
+- task: VSTest@2
+  inputs:
+    platform: '$(buildPlatform)'
+    configuration: '$(buildConfiguration)'
+
+- task: PublishSymbols@2
+  inputs:
+    SearchPattern: '**/bin/**/*.pdb'
+    PublishSymbols: false
+  continueOnError: true
+
+- task: PublishBuildArtifacts@1
+  inputs:
+    PathtoPublish: '$(build.artifactstagingdirectory)'
+    ArtifactName: '$(Parameters.ArtifactName)'
+  condition: succeededOrFailed()
+
