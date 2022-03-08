@@ -1,0 +1,25 @@
+@inherits ViewModelTemplate<ProductListViewModel>
+@using Dynamicweb.Rendering
+@using Dynamicweb.Ecommerce.ProductCatalog
+
+@{ 
+    bool isFeed = !string.IsNullOrEmpty(Dynamicweb.Context.Current.Request.QueryString.Get("feed")) ? Convert.ToBoolean(Dynamicweb.Context.Current.Request.QueryString.Get("feed")) : false;
+
+    //Put the ProductListViewModel up in context items
+    if (Dynamicweb.Context.Current.Items.Contains("ProductList"))
+    {
+        Dynamicweb.Context.Current.Items["ProductList"] = Model;
+    } 
+    else 
+    {
+        Dynamicweb.Context.Current.Items.Add("ProductList", Model);
+    }
+}
+
+@if (isFeed) {
+    @Model.ToJson()
+} else {
+    <script type="module">
+       swift.ProductList.init();
+    </script>
+}

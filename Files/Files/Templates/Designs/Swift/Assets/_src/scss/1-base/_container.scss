@@ -1,0 +1,41 @@
+@use 'sass:math';
+
+@media ( min-width: 1600px ) {
+
+	.container-xxl,
+	.container-xl,
+	.container-lg,
+	.container-md,
+	.container-sm,
+	.container {
+		max-width: 1520px;
+	}
+}
+
+@media ( min-width: 1920px ) {
+
+	.container-xxl,
+	.container-xl,
+	.container-lg,
+	.container-md,
+	.container-sm,
+	.container {
+		max-width: 1820px;
+	}
+}
+
+.container-compressed {
+	@include make-container();
+
+	@include media-breakpoint-up(md) {
+		max-width: math.div(100, 12) * 10%;
+	}
+
+	@include media-breakpoint-up(lg) {
+		max-width: math.div(100, 12) * 8%;
+	}
+
+	@include media-breakpoint-up(xxl) {
+		max-width: math.div(100, 12) * 6%;
+	}
+}
