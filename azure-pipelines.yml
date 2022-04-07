@@ -59,7 +59,7 @@ steps:
 
 - task: CopyFiles@2
   inputs:
-    SourceFolder: Files
+    SourceFolder: Files/Files
     Contents: |
       **/* 
       **\!node_modules/**/*
