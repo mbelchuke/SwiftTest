@@ -346,12 +346,7 @@ Files/Files/System/Indexes
 Files/Files/*.license
 *.parsed.cshtml
 # We need to include the entire Admin folder (even if there's bin and packages folders)
-!Application/Admin/**/* 
-/Files/Files/Images/**/*.jpg
-/Files/Files/Images/**/*.jpeg
-/Files/Files/Images/**/*.png
-/Files/Files/Images/**/*.svg
-/Files/Files/Images/**/*.gif
+!Application/Admin/**/*
 !/Files/Files/Images/SvgIcons
 /Files/Files/System/Items/*.dat
 /Files/Files/System/Items/WebsiteSettings
@@ -364,6 +359,5 @@ Files/Files/*.license
 /Files/Files/Files/Integration/**/*.csv
 /Files/Files/Files/Integration/**/*.xslx
 /Files/Files/System/_bannedIps.txt
-/Files/Files/Images
 /Files/Files/DigitalAssets
 /Files/*Translations.xml
