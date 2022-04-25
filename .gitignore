@@ -359,6 +359,5 @@ Files/Files/*.license
 /Files/Files/Files/Integration/**/*.csv
 /Files/Files/Files/Integration/**/*.xslx
 /Files/Files/System/_bannedIps.txt
-/Files/Files/Images
 /Files/Files/DigitalAssets
 /Files/*Translations.xml
