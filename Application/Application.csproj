@@ -6334,8 +6334,9 @@
     </VisualStudio>
   </ProjectExtensions>
   <PropertyGroup>
-    <PostBuildEvent>
-    </PostBuildEvent>
+    <PostBuildEvent>cd "$(SolutionDir)Files"
+install.bat
+call build.bat</PostBuildEvent>
   </PropertyGroup>
   <Import Project="..\packages\IronPdf.Native.Chrome.Windows.2021.12.4389\build\net452\IronPdf.Native.Chrome.Windows.targets" Condition="Exists('..\packages\IronPdf.Native.Chrome.Windows.2021.12.4389\build\net452\IronPdf.Native.Chrome.Windows.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
