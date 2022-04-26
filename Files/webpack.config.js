@@ -17,10 +17,10 @@ module.exports = [
         name: 'scripts',
         mode: mode,
         entry: {
-            'scripts': './Swift/Files/Templates/Designs/Swift/Assets/_src/js/swift.js'
+            'scripts': './Files/Templates/Designs/Swift/Assets/_src/js/swift.js'
         },
         output: {
-            path: path.resolve(__dirname, 'Swift','Files','Templates','Designs','Swift','Assets','js'),
+            path: path.resolve(__dirname, 'Files','Templates','Designs','Swift','Assets','js'),
             filename: '[name].js'
         },
         module: {
@@ -49,14 +49,14 @@ module.exports = [
         name: 'modules',
         mode: mode,
         entry: {
-            'swiffy-slider': './Swift/Files/Templates/Designs/Swift/Assets/_src/js/modules/swiffy-slider.js',
-            'tiny-slider': './Swift/Files/Templates/Designs/Swift/Assets/_src/js/modules/tiny-slider.js',
-			'plyr': './Swift/Files/Templates/Designs/Swift/Assets/_src/js/modules/plyr.js',
-			'aos': './Swift/Files/Templates/Designs/Swift/Assets/_src/js/modules/aos.js',
-			'flatpickr': './Swift/Files/Templates/Designs/Swift/Assets/_src/js/modules/flatpickr.js',
+            'swiffy-slider': './Files/Templates/Designs/Swift/Assets/_src/js/modules/swiffy-slider.js',
+            'tiny-slider': './Files/Templates/Designs/Swift/Assets/_src/js/modules/tiny-slider.js',
+			'plyr': './Files/Templates/Designs/Swift/Assets/_src/js/modules/plyr.js',
+			'aos': './Files/Templates/Designs/Swift/Assets/_src/js/modules/aos.js',
+			'flatpickr': './Files/Templates/Designs/Swift/Assets/_src/js/modules/flatpickr.js',
         },
         output: {
-            path: path.resolve(__dirname, 'Swift','Files','Templates','Designs','Swift','Assets','js'),
+            path: path.resolve(__dirname, 'Files','Templates','Designs','Swift','Assets','js'),
             filename: '[name].js'
         },
         module: {
@@ -85,16 +85,16 @@ module.exports = [
         name: 'styles',
         mode: mode,
         entry: {
-			'styles': './Swift/Files/Templates/Designs/Swift/Assets/_src/scss/swift.scss'
+			'styles': './Files/Templates/Designs/Swift/Assets/_src/scss/swift.scss'
         },
         output: {
-            path: path.resolve(__dirname, 'Swift','Files','Templates','Designs','Swift','Assets','css'),
+            path: path.resolve(__dirname, 'Files','Templates','Designs','Swift','Assets','css'),
             filename: '[name].js'
         },
         plugins: [
             new StylelintPlugin({
                 configFile: '.stylelintrc.json',
-                files: 'Swift/Files/Templates/Designs/Swift/Assets/_src/scss/**/*.scss',
+                files: 'Files/Templates/Designs/Swift/Assets/_src/scss/**/*.scss',
             }),
             new MiniCssExtractPlugin({
                 filename: '[name].css'
