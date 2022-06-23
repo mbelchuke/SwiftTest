@@ -410,9 +410,9 @@
 
             <dw:Dialog ID="ProductImagesPicker" Title="Select images" ShowOkButton="true" Size="Medium" ShowCancelButton="true" ShowClose="true" OkAction="Dynamicweb.PIM.BulkEdit.get_current().changeImages();" runat="server">
                 <dwc:GroupBox runat="server" DoTranslation="true" Title="Product images">
-                    <dw:FileManager runat="server" ID="ProductImageSmall" AllowBrowse="true" Extensions="jpg,gif,png,swf,pdf,webp" FullPath="true" ShowPreview="true" />
-                    <dw:FileManager runat="server" ID="ProductImageMedium" AllowBrowse="true" Extensions="jpg,gif,png,swf,pdf,webp" FullPath="true" ShowPreview="true" />
-                    <dw:FileManager runat="server" ID="ProductImageLarge" AllowBrowse="true" Extensions="jpg,gif,png,swf,pdf,webp" FullPath="true" ShowPreview="true" />
+                    <dw:FileManager runat="server" ID="ProductImageSmall" AllowBrowse="true" Extensions="jpg,gif,png,swf,pdf,webp,tif,tiff" FullPath="true" ShowPreview="true" />
+                    <dw:FileManager runat="server" ID="ProductImageMedium" AllowBrowse="true" Extensions="jpg,gif,png,swf,pdf,webp,tif,tiff" FullPath="true" ShowPreview="true" />
+                    <dw:FileManager runat="server" ID="ProductImageLarge" AllowBrowse="true" Extensions="jpg,gif,png,swf,pdf,webp,tif,tiff" FullPath="true" ShowPreview="true" />
                 </dwc:GroupBox>
             </dw:Dialog>
 

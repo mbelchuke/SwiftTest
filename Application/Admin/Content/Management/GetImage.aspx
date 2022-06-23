@@ -49,7 +49,7 @@
                 </dw:Toolbar>
 
                 <dwc:GroupBox Title="General" runat="server">
-                    <dw:FileManager Label="File" ID="Image" ShowPreview="false" Name="fmImage" Extensions="jpg,png,gif,jpeg,bmp,webp" ShowOnlyAllowedExtensions="true" runat="server" FullPath="true" />
+                    <dw:FileManager Label="File" ID="Image" ShowPreview="false" Name="fmImage" Extensions="jpg,png,gif,jpeg,bmp,webp,tif,tiff" ShowOnlyAllowedExtensions="true" runat="server" FullPath="true" />
                     <div class="form-group">
                         <label class="control-label">&nbsp;</label>
                         <div class="form-group-input">
@@ -57,7 +57,7 @@
                         </div>
                     </div>
 
-                    <dw:FileManager Label="Alternative file" ID="AlternativeImage" ShowPreview="false" Name="altFmImage" Extensions="jpg,png,gif,jpeg,bmp,webp" ShowOnlyAllowedExtensions="true" runat="server" FullPath="true" />
+                    <dw:FileManager Label="Alternative file" ID="AlternativeImage" ShowPreview="false" Name="altFmImage" Extensions="jpg,png,gif,jpeg,bmp,webp,tif,tiff" ShowOnlyAllowedExtensions="true" runat="server" FullPath="true" />
                     <dwc:InputNumber Label="Width" ID="Width" runat="server">
                     <AddOns>
                         <dwc:FieldAddOn Text="px"></dwc:FieldAddOn>

@@ -1,4 +1,5 @@
 ﻿<Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\Microsoft.Extensions.Configuration.UserSecrets.2.2.0\build\netstandard2.0\Microsoft.Extensions.Configuration.UserSecrets.props" Condition="Exists('..\packages\Microsoft.Extensions.Configuration.UserSecrets.2.2.0\build\netstandard2.0\Microsoft.Extensions.Configuration.UserSecrets.props')" />
   <Import Project="..\packages\Dynamicweb.WebP.2.0.0\build\Dynamicweb.WebP.props" Condition="Exists('..\packages\Dynamicweb.WebP.2.0.0\build\Dynamicweb.WebP.props')" />
   <Import Project="..\packages\Microsoft.CodeAnalysis.Analyzers.2.9.6\build\Microsoft.CodeAnalysis.Analyzers.props" Condition="Exists('..\packages\Microsoft.CodeAnalysis.Analyzers.2.9.6\build\Microsoft.CodeAnalysis.Analyzers.props')" />
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
@@ -47,8 +48,8 @@
     <Reference Include="AuthorizeNet, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\AuthorizeNet.1.9.6\lib\AuthorizeNet.dll</HintPath>
     </Reference>
-    <Reference Include="Avalara.AvaTax.Adapter, Version=11.2.1.0, Culture=neutral, PublicKeyToken=34e4ef76d6267205, processorArchitecture=MSIL">
-      <HintPath>..\packages\Dynamicweb.Ecommerce.TaxProviders.AvalaraTaxProvider.2.0.4\lib\net46\Avalara.AvaTax.Adapter.dll</HintPath>
+    <Reference Include="Avalara.AvaTax.RestClient.net461, Version=21.8.0.0, Culture=neutral, PublicKeyToken=640b26ba35192d1b, processorArchitecture=MSIL">
+      <HintPath>..\packages\Avalara.AvaTax.21.8.0\lib\net461\Avalara.AvaTax.RestClient.net461.dll</HintPath>
     </Reference>
     <Reference Include="Brotli.Core, Version=2.0.4.2, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Brotli.NET.2.0.4.2\lib\net45\Brotli.Core.dll</HintPath>
@@ -63,10 +64,10 @@
       <HintPath>..\packages\dotless.1.5.2\lib\dotless.Core.dll</HintPath>
     </Reference>
     <Reference Include="Dynamicweb, Version=9.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Dynamicweb.9.13.3\lib\netstandard2.0\Dynamicweb.dll</HintPath>
+      <HintPath>..\packages\Dynamicweb.9.13.22\lib\netstandard2.0\Dynamicweb.dll</HintPath>
     </Reference>
     <Reference Include="Dynamicweb.Admin, Version=9.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Dynamicweb.Admin.9.13.1\lib\net472\Dynamicweb.Admin.dll</HintPath>
+      <HintPath>..\packages\Dynamicweb.Admin.9.13.8\lib\net472\Dynamicweb.Admin.dll</HintPath>
     </Reference>
     <Reference Include="Dynamicweb.Analytics, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Dynamicweb.Analytics.2.1.3\lib\net472\Dynamicweb.Analytics.dll</HintPath>
@@ -75,13 +76,13 @@
       <HintPath>..\packages\Dynamicweb.AspNet.4.0.1\lib\net472\Dynamicweb.AspNet.dll</HintPath>
     </Reference>
     <Reference Include="Dynamicweb.AuditProvider, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Dynamicweb.AuditProvider.1.1.12\lib\net472\Dynamicweb.AuditProvider.dll</HintPath>
+      <HintPath>..\packages\Dynamicweb.AuditProvider.2.0.0\lib\netstandard2.0\Dynamicweb.AuditProvider.dll</HintPath>
     </Reference>
     <Reference Include="Dynamicweb.BulkDataEdit, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Dynamicweb.BulkDataEdit.2.0.0\lib\netstandard2.0\Dynamicweb.BulkDataEdit.dll</HintPath>
     </Reference>
     <Reference Include="Dynamicweb.Caching, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Dynamicweb.Caching.3.0.6\lib\netstandard2.0\Dynamicweb.Caching.dll</HintPath>
+      <HintPath>..\packages\Dynamicweb.Caching.3.0.7\lib\netstandard2.0\Dynamicweb.Caching.dll</HintPath>
     </Reference>
     <Reference Include="Dynamicweb.Configuration, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Dynamicweb.Configuration.4.1.3\lib\netstandard2.0\Dynamicweb.Configuration.dll</HintPath>
@@ -99,7 +100,7 @@
       <HintPath>..\packages\Dynamicweb.Content.Social.Adapters.OAuth.2.0.0\lib\net46\Dynamicweb.Content.Social.Adapters.OAuth.dll</HintPath>
     </Reference>
     <Reference Include="Dynamicweb.Controls, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Dynamicweb.Controls.4.4.1\lib\net472\Dynamicweb.Controls.dll</HintPath>
+      <HintPath>..\packages\Dynamicweb.Controls.4.4.3\lib\net472\Dynamicweb.Controls.dll</HintPath>
     </Reference>
     <Reference Include="Dynamicweb.Core, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Dynamicweb.Core.4.0.2\lib\netstandard2.0\Dynamicweb.Core.dll</HintPath>
@@ -135,7 +136,7 @@
       <HintPath>..\packages\Dynamicweb.Data.3.0.3\lib\netstandard2.0\Dynamicweb.Data.dll</HintPath>
     </Reference>
     <Reference Include="Dynamicweb.DataIntegration, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Dynamicweb.DataIntegration.3.0.30\lib\netstandard2.0\Dynamicweb.DataIntegration.dll</HintPath>
+      <HintPath>..\packages\Dynamicweb.DataIntegration.3.0.34\lib\netstandard2.0\Dynamicweb.DataIntegration.dll</HintPath>
     </Reference>
     <Reference Include="Dynamicweb.DataIntegration.Providers.AreaSpecific.UserExportAddIn, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Dynamicweb.DataIntegration.Providers.AreaSpecific.UserExportAddIn.3.0.1\lib\netstandard2.0\Dynamicweb.DataIntegration.Providers.AreaSpecific.UserExportAddIn.dll</HintPath>
@@ -147,7 +148,7 @@
       <HintPath>..\packages\Dynamicweb.DataIntegration.Providers.CRMProvider.2.0.2\lib\net46\Dynamicweb.DataIntegration.Providers.CRMProvider.dll</HintPath>
     </Reference>
     <Reference Include="Dynamicweb.DataIntegration.Providers.CsvProvider, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Dynamicweb.DataIntegration.Providers.CsvProvider.4.0.6\lib\netstandard2.0\Dynamicweb.DataIntegration.Providers.CsvProvider.dll</HintPath>
+      <HintPath>..\packages\Dynamicweb.DataIntegration.Providers.CsvProvider.4.0.10\lib\netstandard2.0\Dynamicweb.DataIntegration.Providers.CsvProvider.dll</HintPath>
     </Reference>
     <Reference Include="Dynamicweb.DataIntegration.Providers.DynamicwebProvider, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Dynamicweb.DataIntegration.Providers.DynamicwebProvider.3.0.5\lib\netstandard2.0\Dynamicweb.DataIntegration.Providers.DynamicwebProvider.dll</HintPath>
@@ -159,10 +160,10 @@
       <HintPath>..\packages\Dynamicweb.DataIntegration.Providers.EcomProvider.5.0.13\lib\netstandard2.0\Dynamicweb.DataIntegration.Providers.EcomProvider.dll</HintPath>
     </Reference>
     <Reference Include="Dynamicweb.DataIntegration.Providers.EndpointProvider, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Dynamicweb.DataIntegration.Providers.EndpointProvider.0.2.18\lib\netstandard2.0\Dynamicweb.DataIntegration.Providers.EndpointProvider.dll</HintPath>
+      <HintPath>..\packages\Dynamicweb.DataIntegration.Providers.EndpointProvider.0.2.22\lib\netstandard2.0\Dynamicweb.DataIntegration.Providers.EndpointProvider.dll</HintPath>
     </Reference>
-    <Reference Include="Dynamicweb.DataIntegration.Providers.ExcelProvider, Version=4.0.5.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Dynamicweb.DataIntegration.Providers.ExcelProvider.4.0.5\lib\netstandard2.0\Dynamicweb.DataIntegration.Providers.ExcelProvider.dll</HintPath>
+    <Reference Include="Dynamicweb.DataIntegration.Providers.ExcelProvider, Version=4.0.7.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Dynamicweb.DataIntegration.Providers.ExcelProvider.4.0.7\lib\netstandard2.0\Dynamicweb.DataIntegration.Providers.ExcelProvider.dll</HintPath>
     </Reference>
     <Reference Include="Dynamicweb.DataIntegration.Providers.ItemProvider, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Dynamicweb.DataIntegration.Providers.ItemProvider.3.0.3\lib\netstandard2.0\Dynamicweb.DataIntegration.Providers.ItemProvider.dll</HintPath>
@@ -171,7 +172,7 @@
       <HintPath>..\packages\Dynamicweb.DataIntegration.Providers.JsonProvider.2.0.1\lib\netstandard2.0\Dynamicweb.DataIntegration.Providers.JsonProvider.dll</HintPath>
     </Reference>
     <Reference Include="Dynamicweb.DataIntegration.Providers.ODataProvider, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Dynamicweb.DataIntegration.Providers.ODataProvider.0.2.13\lib\netstandard2.0\Dynamicweb.DataIntegration.Providers.ODataProvider.dll</HintPath>
+      <HintPath>..\packages\Dynamicweb.DataIntegration.Providers.ODataProvider.0.2.18\lib\netstandard2.0\Dynamicweb.DataIntegration.Providers.ODataProvider.dll</HintPath>
     </Reference>
     <Reference Include="Dynamicweb.DataIntegration.Providers.OrderProvider, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Dynamicweb.DataIntegration.Providers.OrderProvider.2.0.3\lib\netstandard2.0\Dynamicweb.DataIntegration.Providers.OrderProvider.dll</HintPath>
@@ -183,7 +184,7 @@
       <HintPath>..\packages\Dynamicweb.DataIntegration.Providers.SqlViewProvider.2.0.2\lib\netstandard2.0\Dynamicweb.DataIntegration.Providers.SqlViewProvider.dll</HintPath>
     </Reference>
     <Reference Include="Dynamicweb.DataIntegration.Providers.UserProvider, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Dynamicweb.DataIntegration.Providers.UserProvider.3.0.6\lib\netstandard2.0\Dynamicweb.DataIntegration.Providers.UserProvider.dll</HintPath>
+      <HintPath>..\packages\Dynamicweb.DataIntegration.Providers.UserProvider.3.0.8\lib\netstandard2.0\Dynamicweb.DataIntegration.Providers.UserProvider.dll</HintPath>
     </Reference>
     <Reference Include="Dynamicweb.DataIntegration.Providers.XmlProvider, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Dynamicweb.DataIntegration.Providers.XmlProvider.3.0.4\lib\netstandard2.0\Dynamicweb.DataIntegration.Providers.XmlProvider.dll</HintPath>
@@ -231,13 +232,13 @@
       <HintPath>..\packages\Dynamicweb.Deployment.3.0.4\lib\netstandard2.0\Dynamicweb.Deployment.dll</HintPath>
     </Reference>
     <Reference Include="Dynamicweb.Deployment.DataItemProviders, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Dynamicweb.Deployment.DataItemProviders.2.3.0\lib\net472\Dynamicweb.Deployment.DataItemProviders.dll</HintPath>
+      <HintPath>..\packages\Dynamicweb.Deployment.DataItemProviders.3.0.1\lib\netstandard2.0\Dynamicweb.Deployment.DataItemProviders.dll</HintPath>
     </Reference>
     <Reference Include="Dynamicweb.Diagnostics, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Dynamicweb.Diagnostics.4.0.2\lib\netstandard2.0\Dynamicweb.Diagnostics.dll</HintPath>
     </Reference>
     <Reference Include="Dynamicweb.Ecommerce, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Dynamicweb.Ecommerce.1.13.7\lib\netstandard2.0\Dynamicweb.Ecommerce.dll</HintPath>
+      <HintPath>..\packages\Dynamicweb.Ecommerce.1.13.54\lib\netstandard2.0\Dynamicweb.Ecommerce.dll</HintPath>
     </Reference>
     <Reference Include="Dynamicweb.Ecommerce.CheckoutHandlers.Adyen, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Dynamicweb.Ecommerce.CheckoutHandlers.Adyen.2.0.4\lib\netstandard2.0\Dynamicweb.Ecommerce.CheckoutHandlers.Adyen.dll</HintPath>
@@ -246,7 +247,7 @@
       <HintPath>..\packages\Dynamicweb.Ecommerce.CheckoutHandlers.Adyen2.1.0.1\lib\netstandard2.0\Dynamicweb.Ecommerce.CheckoutHandlers.Adyen2.dll</HintPath>
     </Reference>
     <Reference Include="Dynamicweb.Ecommerce.CheckoutHandlers.AltaPay, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Dynamicweb.Ecommerce.CheckoutHandlers.AltaPay.3.0.1\lib\netstandard2.0\Dynamicweb.Ecommerce.CheckoutHandlers.AltaPay.dll</HintPath>
+      <HintPath>..\packages\Dynamicweb.Ecommerce.CheckoutHandlers.AltaPay.3.0.3\lib\netstandard2.0\Dynamicweb.Ecommerce.CheckoutHandlers.AltaPay.dll</HintPath>
     </Reference>
     <Reference Include="Dynamicweb.Ecommerce.CheckoutHandlers.AuthorizeNet, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Dynamicweb.Ecommerce.CheckoutHandlers.AuthorizeNet.2.1.1\lib\net46\Dynamicweb.Ecommerce.CheckoutHandlers.AuthorizeNet.dll</HintPath>
@@ -255,25 +256,25 @@
       <HintPath>..\packages\Dynamicweb.Ecommerce.CheckoutHandlers.AuthorizeNetAIM.2.1.1\lib\net46\Dynamicweb.Ecommerce.CheckoutHandlers.AuthorizeNetAIM.dll</HintPath>
     </Reference>
     <Reference Include="Dynamicweb.Ecommerce.CheckoutHandlers.AuthorizeNetApi, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Dynamicweb.Ecommerce.CheckoutHandlers.AuthorizeNetApi.1.0.3\lib\net472\Dynamicweb.Ecommerce.CheckoutHandlers.AuthorizeNetApi.dll</HintPath>
+      <HintPath>..\packages\Dynamicweb.Ecommerce.CheckoutHandlers.AuthorizeNetApi.2.0.0\lib\netstandard2.0\Dynamicweb.Ecommerce.CheckoutHandlers.AuthorizeNetApi.dll</HintPath>
     </Reference>
     <Reference Include="Dynamicweb.Ecommerce.CheckoutHandlers.BBSPayment, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Dynamicweb.Ecommerce.CheckoutHandlers.BBSPayment.2.1.6\lib\net472\Dynamicweb.Ecommerce.CheckoutHandlers.BBSPayment.dll</HintPath>
+      <HintPath>..\packages\Dynamicweb.Ecommerce.CheckoutHandlers.BBSPayment.3.0.0\lib\netstandard2.0\Dynamicweb.Ecommerce.CheckoutHandlers.BBSPayment.dll</HintPath>
     </Reference>
     <Reference Include="Dynamicweb.Ecommerce.CheckoutHandlers.BeanstreamHostedForm, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Dynamicweb.Ecommerce.CheckoutHandlers.BeanstreamHostedForm.2.0.2\lib\net472\Dynamicweb.Ecommerce.CheckoutHandlers.BeanstreamHostedForm.dll</HintPath>
     </Reference>
     <Reference Include="Dynamicweb.Ecommerce.CheckoutHandlers.ChargeLogicConnect, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Dynamicweb.Ecommerce.CheckoutHandlers.ChargeLogicConnect.2.0.1\lib\net46\Dynamicweb.Ecommerce.CheckoutHandlers.ChargeLogicConnect.dll</HintPath>
+      <HintPath>..\packages\Dynamicweb.Ecommerce.CheckoutHandlers.ChargeLogicConnect.3.0.1\lib\netstandard2.0\Dynamicweb.Ecommerce.CheckoutHandlers.ChargeLogicConnect.dll</HintPath>
     </Reference>
     <Reference Include="Dynamicweb.Ecommerce.CheckoutHandlers.CyberSource, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Dynamicweb.Ecommerce.CheckoutHandlers.CyberSource.2.0.3\lib\net472\Dynamicweb.Ecommerce.CheckoutHandlers.CyberSource.dll</HintPath>
+      <HintPath>..\packages\Dynamicweb.Ecommerce.CheckoutHandlers.CyberSource.3.0.0\lib\netstandard2.0\Dynamicweb.Ecommerce.CheckoutHandlers.CyberSource.dll</HintPath>
     </Reference>
     <Reference Include="Dynamicweb.Ecommerce.CheckoutHandlers.Dibs, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Dynamicweb.Ecommerce.CheckoutHandlers.Dibs.2.0.3\lib\net472\Dynamicweb.Ecommerce.CheckoutHandlers.Dibs.dll</HintPath>
+      <HintPath>..\packages\Dynamicweb.Ecommerce.CheckoutHandlers.Dibs.3.0.0\lib\netstandard2.0\Dynamicweb.Ecommerce.CheckoutHandlers.Dibs.dll</HintPath>
     </Reference>
     <Reference Include="Dynamicweb.Ecommerce.CheckoutHandlers.DibsEasyCheckout, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Dynamicweb.Ecommerce.CheckoutHandlers.DibsEasyCheckout.1.1.8\lib\net472\Dynamicweb.Ecommerce.CheckoutHandlers.DibsEasyCheckout.dll</HintPath>
+      <HintPath>..\packages\Dynamicweb.Ecommerce.CheckoutHandlers.DibsEasyCheckout.2.1.0\lib\netstandard2.0\Dynamicweb.Ecommerce.CheckoutHandlers.DibsEasyCheckout.dll</HintPath>
     </Reference>
     <Reference Include="Dynamicweb.Ecommerce.CheckoutHandlers.EBizCharge, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Dynamicweb.Ecommerce.CheckoutHandlers.EBizCharge.2.0.1\lib\netstandard2.0\Dynamicweb.Ecommerce.CheckoutHandlers.EBizCharge.dll</HintPath>
@@ -285,25 +286,25 @@
       <HintPath>..\packages\Dynamicweb.Ecommerce.CheckoutHandlers.KlarnaCheckout.2.0.2\lib\net472\Dynamicweb.Ecommerce.CheckoutHandlers.KlarnaCheckout.dll</HintPath>
     </Reference>
     <Reference Include="Dynamicweb.Ecommerce.CheckoutHandlers.KlarnaCheckout_v3, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Dynamicweb.Ecommerce.CheckoutHandlers.KlarnaCheckout_v3.1.0.4\lib\net472\Dynamicweb.Ecommerce.CheckoutHandlers.KlarnaCheckout_v3.dll</HintPath>
+      <HintPath>..\packages\Dynamicweb.Ecommerce.CheckoutHandlers.KlarnaCheckout_v3.2.0.1\lib\netstandard2.0\Dynamicweb.Ecommerce.CheckoutHandlers.KlarnaCheckout_v3.dll</HintPath>
     </Reference>
     <Reference Include="Dynamicweb.Ecommerce.CheckoutHandlers.Ogone, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Dynamicweb.Ecommerce.CheckoutHandlers.Ogone.2.0.3\lib\net472\Dynamicweb.Ecommerce.CheckoutHandlers.Ogone.dll</HintPath>
+      <HintPath>..\packages\Dynamicweb.Ecommerce.CheckoutHandlers.Ogone.3.0.0\lib\netstandard2.0\Dynamicweb.Ecommerce.CheckoutHandlers.Ogone.dll</HintPath>
     </Reference>
     <Reference Include="Dynamicweb.Ecommerce.CheckoutHandlers.PayPalExpressCheckout, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Dynamicweb.Ecommerce.CheckoutHandlers.PayPalExpressCheckout.3.0.1\lib\netstandard2.0\Dynamicweb.Ecommerce.CheckoutHandlers.PayPalExpressCheckout.dll</HintPath>
+      <HintPath>..\packages\Dynamicweb.Ecommerce.CheckoutHandlers.PayPalExpressCheckout.3.0.3\lib\netstandard2.0\Dynamicweb.Ecommerce.CheckoutHandlers.PayPalExpressCheckout.dll</HintPath>
     </Reference>
     <Reference Include="Dynamicweb.Ecommerce.CheckoutHandlers.QuickPay3, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Dynamicweb.Ecommerce.CheckoutHandlers.QuickPay3.2.0.0\lib\net46\Dynamicweb.Ecommerce.CheckoutHandlers.QuickPay3.dll</HintPath>
+      <HintPath>..\packages\Dynamicweb.Ecommerce.CheckoutHandlers.QuickPay3.3.0.0\lib\netstandard2.0\Dynamicweb.Ecommerce.CheckoutHandlers.QuickPay3.dll</HintPath>
     </Reference>
     <Reference Include="Dynamicweb.Ecommerce.CheckoutHandlers.QuickPayPaymentWindow, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Dynamicweb.Ecommerce.CheckoutHandlers.QuickPayPaymentWindow.2.0.11\lib\net472\Dynamicweb.Ecommerce.CheckoutHandlers.QuickPayPaymentWindow.dll</HintPath>
+      <HintPath>..\packages\Dynamicweb.Ecommerce.CheckoutHandlers.QuickPayPaymentWindow.3.0.2\lib\netstandard2.0\Dynamicweb.Ecommerce.CheckoutHandlers.QuickPayPaymentWindow.dll</HintPath>
     </Reference>
     <Reference Include="Dynamicweb.Ecommerce.CheckoutHandlers.StripeCheckout, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Dynamicweb.Ecommerce.CheckoutHandlers.StripeCheckout.3.0.0\lib\netstandard2.0\Dynamicweb.Ecommerce.CheckoutHandlers.StripeCheckout.dll</HintPath>
     </Reference>
     <Reference Include="Dynamicweb.Ecommerce.DynamicwebLiveIntegration, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Dynamicweb.Ecommerce.DynamicwebLiveIntegration.6.2.3\lib\netstandard2.0\Dynamicweb.Ecommerce.DynamicwebLiveIntegration.dll</HintPath>
+      <HintPath>..\packages\Dynamicweb.Ecommerce.DynamicwebLiveIntegration.6.4.0\lib\netstandard2.0\Dynamicweb.Ecommerce.DynamicwebLiveIntegration.dll</HintPath>
     </Reference>
     <Reference Include="Dynamicweb.Ecommerce.DynamicwebLiveIntegration.RibbonBars, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Dynamicweb.Ecommerce.DynamicwebLiveIntegration.RibbonBars.1.0.0\lib\net472\Dynamicweb.Ecommerce.DynamicwebLiveIntegration.RibbonBars.dll</HintPath>
@@ -345,25 +346,25 @@
       <HintPath>..\packages\Dynamicweb.Ecommerce.SalesDiscounts.TotalSalesPriceDiscount.2.0.1\lib\net46\Dynamicweb.Ecommerce.SalesDiscounts.TotalSalesPriceDiscount.dll</HintPath>
     </Reference>
     <Reference Include="Dynamicweb.Ecommerce.ShippingProviders.FedEx, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Dynamicweb.Ecommerce.ShippingProviders.FedEx.2.0.0\lib\net46\Dynamicweb.Ecommerce.ShippingProviders.FedEx.dll</HintPath>
+      <HintPath>..\packages\Dynamicweb.Ecommerce.ShippingProviders.FedEx.3.0.0\lib\netstandard2.0\Dynamicweb.Ecommerce.ShippingProviders.FedEx.dll</HintPath>
     </Reference>
     <Reference Include="Dynamicweb.Ecommerce.ShippingProviders.GLS, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Dynamicweb.Ecommerce.ShippingProviders.GLS.2.0.4\lib\net472\Dynamicweb.Ecommerce.ShippingProviders.GLS.dll</HintPath>
+      <HintPath>..\packages\Dynamicweb.Ecommerce.ShippingProviders.GLS.3.0.0\lib\netstandard2.0\Dynamicweb.Ecommerce.ShippingProviders.GLS.dll</HintPath>
     </Reference>
     <Reference Include="Dynamicweb.Ecommerce.ShippingProviders.PostDanmark, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Dynamicweb.Ecommerce.ShippingProviders.PostDanmark.3.0.2\lib\netstandard2.0\Dynamicweb.Ecommerce.ShippingProviders.PostDanmark.dll</HintPath>
     </Reference>
     <Reference Include="Dynamicweb.Ecommerce.ShippingProviders.PostDanmarkServicePoint, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Dynamicweb.Ecommerce.ShippingProviders.PostDanmarkServicePoint.2.0.1\lib\netstandard2.0\Dynamicweb.Ecommerce.ShippingProviders.PostDanmarkServicePoint.dll</HintPath>
+      <HintPath>..\packages\Dynamicweb.Ecommerce.ShippingProviders.PostDanmarkServicePoint.2.0.2\lib\netstandard2.0\Dynamicweb.Ecommerce.ShippingProviders.PostDanmarkServicePoint.dll</HintPath>
     </Reference>
     <Reference Include="Dynamicweb.Ecommerce.ShippingProviders.ShipAdvisor, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Dynamicweb.Ecommerce.ShippingProviders.ShipAdvisor.2.0.1\lib\netstandard2.0\Dynamicweb.Ecommerce.ShippingProviders.ShipAdvisor.dll</HintPath>
+      <HintPath>..\packages\Dynamicweb.Ecommerce.ShippingProviders.ShipAdvisor.2.0.2\lib\netstandard2.0\Dynamicweb.Ecommerce.ShippingProviders.ShipAdvisor.dll</HintPath>
     </Reference>
     <Reference Include="Dynamicweb.Ecommerce.ShippingProviders.StockLocations, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Dynamicweb.Ecommerce.ShippingProviders.StockLocations.2.0.0\lib\netstandard2.0\Dynamicweb.Ecommerce.ShippingProviders.StockLocations.dll</HintPath>
     </Reference>
     <Reference Include="Dynamicweb.Ecommerce.ShippingProviders.Unifaun, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Dynamicweb.Ecommerce.ShippingProviders.Unifaun.2.0.0\lib\net46\Dynamicweb.Ecommerce.ShippingProviders.Unifaun.dll</HintPath>
+      <HintPath>..\packages\Dynamicweb.Ecommerce.ShippingProviders.Unifaun.3.0.1\lib\netstandard2.0\Dynamicweb.Ecommerce.ShippingProviders.Unifaun.dll</HintPath>
     </Reference>
     <Reference Include="Dynamicweb.Ecommerce.ShippingProviders.UPS, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Dynamicweb.Ecommerce.ShippingProviders.UPS.4.0.0\lib\netstandard2.0\Dynamicweb.Ecommerce.ShippingProviders.UPS.dll</HintPath>
@@ -375,31 +376,31 @@
       <HintPath>..\packages\Dynamicweb.Ecommerce.Specialized.2.0.1\lib\net472\Dynamicweb.Ecommerce.Specialized.dll</HintPath>
     </Reference>
     <Reference Include="Dynamicweb.Ecommerce.TaxProviders.AvalaraTaxProvider, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Dynamicweb.Ecommerce.TaxProviders.AvalaraTaxProvider.2.0.4\lib\net46\Dynamicweb.Ecommerce.TaxProviders.AvalaraTaxProvider.dll</HintPath>
+      <HintPath>..\packages\Dynamicweb.Ecommerce.TaxProviders.AvalaraTaxProvider.3.0.0\lib\netstandard2.0\Dynamicweb.Ecommerce.TaxProviders.AvalaraTaxProvider.dll</HintPath>
     </Reference>
     <Reference Include="Dynamicweb.Ecommerce.TaxProviders.EcomTaxProvider, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Dynamicweb.Ecommerce.TaxProviders.EcomTaxProvider.2.0.2\lib\net46\Dynamicweb.Ecommerce.TaxProviders.EcomTaxProvider.dll</HintPath>
+      <HintPath>..\packages\Dynamicweb.Ecommerce.TaxProviders.EcomTaxProvider.3.0.0\lib\netstandard2.0\Dynamicweb.Ecommerce.TaxProviders.EcomTaxProvider.dll</HintPath>
     </Reference>
     <Reference Include="Dynamicweb.Ecommerce.TaxProviders.VertexTaxProvider, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Dynamicweb.Ecommerce.TaxProviders.VertexTaxProvider.1.1.3\lib\net46\Dynamicweb.Ecommerce.TaxProviders.VertexTaxProvider.dll</HintPath>
+      <HintPath>..\packages\Dynamicweb.Ecommerce.TaxProviders.VertexTaxProvider.2.0.0\lib\netstandard2.0\Dynamicweb.Ecommerce.TaxProviders.VertexTaxProvider.dll</HintPath>
     </Reference>
     <Reference Include="Dynamicweb.Ecommerce.WebAPI, Version=0.1.2.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Dynamicweb.Ecommerce.WebAPI.0.14.1\lib\net472\Dynamicweb.Ecommerce.WebAPI.dll</HintPath>
+      <HintPath>..\packages\Dynamicweb.Ecommerce.WebAPI.0.14.9\lib\net472\Dynamicweb.Ecommerce.WebAPI.dll</HintPath>
     </Reference>
     <Reference Include="Dynamicweb.EmailMarketing, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Dynamicweb.EmailMarketing.3.1.1\lib\netstandard2.0\Dynamicweb.EmailMarketing.dll</HintPath>
     </Reference>
     <Reference Include="Dynamicweb.EmailMarketing.RecipientProviders.AbandonedCartProvider, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Dynamicweb.EmailMarketing.RecipientProviders.AbandonedCartProvider.3.0.0\lib\netstandard2.0\Dynamicweb.EmailMarketing.RecipientProviders.AbandonedCartProvider.dll</HintPath>
+      <HintPath>..\packages\Dynamicweb.EmailMarketing.RecipientProviders.AbandonedCartProvider.3.0.2\lib\netstandard2.0\Dynamicweb.EmailMarketing.RecipientProviders.AbandonedCartProvider.dll</HintPath>
     </Reference>
     <Reference Include="Dynamicweb.EmailMarketing.RecipientProviders.BackInStockProvider, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Dynamicweb.EmailMarketing.RecipientProviders.BackInStockProvider.3.0.0\lib\netstandard2.0\Dynamicweb.EmailMarketing.RecipientProviders.BackInStockProvider.dll</HintPath>
+      <HintPath>..\packages\Dynamicweb.EmailMarketing.RecipientProviders.BackInStockProvider.3.0.1\lib\netstandard2.0\Dynamicweb.EmailMarketing.RecipientProviders.BackInStockProvider.dll</HintPath>
     </Reference>
     <Reference Include="Dynamicweb.EmailMarketing.RecipientProviders.UnresponsiveProvider, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Dynamicweb.EmailMarketing.RecipientProviders.UnresponsiveProvider.3.0.0\lib\netstandard2.0\Dynamicweb.EmailMarketing.RecipientProviders.UnresponsiveProvider.dll</HintPath>
+      <HintPath>..\packages\Dynamicweb.EmailMarketing.RecipientProviders.UnresponsiveProvider.3.0.1\lib\netstandard2.0\Dynamicweb.EmailMarketing.RecipientProviders.UnresponsiveProvider.dll</HintPath>
     </Reference>
     <Reference Include="Dynamicweb.EmailMarketing.ResendProviders.UnresponsiveResendProvider, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Dynamicweb.EmailMarketing.ResendProviders.UnresponsiveResendProvider.2.0.0\lib\netstandard2.0\Dynamicweb.EmailMarketing.ResendProviders.UnresponsiveResendProvider.dll</HintPath>
+      <HintPath>..\packages\Dynamicweb.EmailMarketing.ResendProviders.UnresponsiveResendProvider.2.0.1\lib\netstandard2.0\Dynamicweb.EmailMarketing.ResendProviders.UnresponsiveResendProvider.dll</HintPath>
     </Reference>
     <Reference Include="Dynamicweb.Environment, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Dynamicweb.Environment.4.0.8\lib\netstandard2.0\Dynamicweb.Environment.dll</HintPath>
@@ -423,28 +424,28 @@
       <HintPath>..\packages\Dynamicweb.Gallery.2.0.1\lib\netstandard2.0\Dynamicweb.Gallery.dll</HintPath>
     </Reference>
     <Reference Include="Dynamicweb.Health.Providers, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Dynamicweb.Health.Providers.2.0.1\lib\netstandard2.0\Dynamicweb.Health.Providers.dll</HintPath>
+      <HintPath>..\packages\Dynamicweb.Health.Providers.2.0.2\lib\netstandard2.0\Dynamicweb.Health.Providers.dll</HintPath>
     </Reference>
     <Reference Include="Dynamicweb.Hosting, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Dynamicweb.Hosting.3.0.1\lib\netstandard2.0\Dynamicweb.Hosting.dll</HintPath>
     </Reference>
     <Reference Include="Dynamicweb.Imaging, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Dynamicweb.Imaging.7.0.2\lib\netstandard2.0\Dynamicweb.Imaging.dll</HintPath>
+      <HintPath>..\packages\Dynamicweb.Imaging.7.0.4\lib\netstandard2.0\Dynamicweb.Imaging.dll</HintPath>
     </Reference>
     <Reference Include="Dynamicweb.Imaging.Providers.ImageGlueProviders, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Dynamicweb.Imaging.Providers.ImageGlueProviders.1.0.9\lib\net472\Dynamicweb.Imaging.Providers.ImageGlueProviders.dll</HintPath>
+      <HintPath>..\packages\Dynamicweb.Imaging.Providers.ImageGlueProviders.1.0.10\lib\net472\Dynamicweb.Imaging.Providers.ImageGlueProviders.dll</HintPath>
     </Reference>
     <Reference Include="Dynamicweb.Imaging.Providers.IronPdfProviders, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Dynamicweb.Imaging.Providers.IronPdfProviders.2.0.0\lib\netstandard2.0\Dynamicweb.Imaging.Providers.IronPdfProviders.dll</HintPath>
+      <HintPath>..\packages\Dynamicweb.Imaging.Providers.IronPdfProviders.3.0.0\lib\netstandard2.0\Dynamicweb.Imaging.Providers.IronPdfProviders.dll</HintPath>
     </Reference>
     <Reference Include="Dynamicweb.Imaging.Providers.MetadataExtractorProviders, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Dynamicweb.Imaging.Providers.MetadataExtractorProviders.2.0.0\lib\netstandard2.0\Dynamicweb.Imaging.Providers.MetadataExtractorProviders.dll</HintPath>
     </Reference>
     <Reference Include="Dynamicweb.Indexing, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Dynamicweb.Indexing.7.2.0\lib\netstandard2.0\Dynamicweb.Indexing.dll</HintPath>
+      <HintPath>..\packages\Dynamicweb.Indexing.7.4.1\lib\netstandard2.0\Dynamicweb.Indexing.dll</HintPath>
     </Reference>
     <Reference Include="Dynamicweb.Indexing.Lucene, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Dynamicweb.Indexing.Lucene.1.3.11\lib\net472\Dynamicweb.Indexing.Lucene.dll</HintPath>
+      <HintPath>..\packages\Dynamicweb.Indexing.Lucene.1.3.14\lib\net472\Dynamicweb.Indexing.Lucene.dll</HintPath>
     </Reference>
     <Reference Include="Dynamicweb.InsightsPublisher, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Dynamicweb.InsightsPublisher.0.4.0\lib\netstandard2.0\Dynamicweb.InsightsPublisher.dll</HintPath>
@@ -471,16 +472,16 @@
       <HintPath>..\packages\Dynamicweb.Mailing.5.0.5\lib\netstandard2.0\Dynamicweb.Mailing.dll</HintPath>
     </Reference>
     <Reference Include="Dynamicweb.Mailing.DeliveryProviders.MandrillProvider, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Dynamicweb.Mailing.DeliveryProviders.MandrillProvider.3.0.0\lib\netstandard2.0\Dynamicweb.Mailing.DeliveryProviders.MandrillProvider.dll</HintPath>
+      <HintPath>..\packages\Dynamicweb.Mailing.DeliveryProviders.MandrillProvider.3.0.1\lib\netstandard2.0\Dynamicweb.Mailing.DeliveryProviders.MandrillProvider.dll</HintPath>
     </Reference>
     <Reference Include="Dynamicweb.Mailing.DeliveryProviders.SaveMessageProvider, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Dynamicweb.Mailing.DeliveryProviders.SaveMessageProvider.3.0.0\lib\netstandard2.0\Dynamicweb.Mailing.DeliveryProviders.SaveMessageProvider.dll</HintPath>
+      <HintPath>..\packages\Dynamicweb.Mailing.DeliveryProviders.SaveMessageProvider.3.0.1\lib\netstandard2.0\Dynamicweb.Mailing.DeliveryProviders.SaveMessageProvider.dll</HintPath>
     </Reference>
     <Reference Include="Dynamicweb.Mailing.DeliveryProviders.SendGridProvider, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Dynamicweb.Mailing.DeliveryProviders.SendGridProvider.3.0.0\lib\netstandard2.0\Dynamicweb.Mailing.DeliveryProviders.SendGridProvider.dll</HintPath>
+      <HintPath>..\packages\Dynamicweb.Mailing.DeliveryProviders.SendGridProvider.3.0.1\lib\netstandard2.0\Dynamicweb.Mailing.DeliveryProviders.SendGridProvider.dll</HintPath>
     </Reference>
     <Reference Include="Dynamicweb.Mailing.DeliveryProviders.SendMessageProvider, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Dynamicweb.Mailing.DeliveryProviders.SendMessageProvider.3.0.0\lib\netstandard2.0\Dynamicweb.Mailing.DeliveryProviders.SendMessageProvider.dll</HintPath>
+      <HintPath>..\packages\Dynamicweb.Mailing.DeliveryProviders.SendMessageProvider.3.0.1\lib\netstandard2.0\Dynamicweb.Mailing.DeliveryProviders.SendMessageProvider.dll</HintPath>
     </Reference>
     <Reference Include="Dynamicweb.Management, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Dynamicweb.Management.5.0.1\lib\net472\Dynamicweb.Management.dll</HintPath>
@@ -495,7 +496,7 @@
       <HintPath>..\packages\Dynamicweb.Management.Demo.2.0.0\lib\net472\Dynamicweb.Management.Demo.dll</HintPath>
     </Reference>
     <Reference Include="Dynamicweb.Management.Ecommerce, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Dynamicweb.Management.Ecommerce.6.0.0\lib\net472\Dynamicweb.Management.Ecommerce.dll</HintPath>
+      <HintPath>..\packages\Dynamicweb.Management.Ecommerce.6.0.2\lib\net472\Dynamicweb.Management.Ecommerce.dll</HintPath>
     </Reference>
     <Reference Include="Dynamicweb.Management.Files, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Dynamicweb.Management.Files.4.2.1\lib\net472\Dynamicweb.Management.Files.dll</HintPath>
@@ -525,7 +526,7 @@
       <HintPath>..\packages\Dynamicweb.News.1.0.9\lib\net46\Dynamicweb.News.dll</HintPath>
     </Reference>
     <Reference Include="Dynamicweb.QueryPublisher, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Dynamicweb.QueryPublisher.2.0.2\lib\netstandard2.0\Dynamicweb.QueryPublisher.dll</HintPath>
+      <HintPath>..\packages\Dynamicweb.QueryPublisher.2.0.3\lib\netstandard2.0\Dynamicweb.QueryPublisher.dll</HintPath>
     </Reference>
     <Reference Include="Dynamicweb.Rapido, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Dynamicweb.Rapido.6.33.1\lib\net472\Dynamicweb.Rapido.dll</HintPath>
@@ -537,7 +538,7 @@
       <HintPath>..\packages\Dynamicweb.Rendering.Providers.1.0.2\lib\net472\Dynamicweb.Rendering.Providers.dll</HintPath>
     </Reference>
     <Reference Include="Dynamicweb.Scheduling, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Dynamicweb.Scheduling.4.1.3\lib\netstandard2.0\Dynamicweb.Scheduling.dll</HintPath>
+      <HintPath>..\packages\Dynamicweb.Scheduling.4.2.0\lib\netstandard2.0\Dynamicweb.Scheduling.dll</HintPath>
     </Reference>
     <Reference Include="Dynamicweb.Scheduling.GroupProductRelationAddIn, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Dynamicweb.Scheduling.GroupProductRelationAddIn.3.1.0\lib\netstandard2.0\Dynamicweb.Scheduling.GroupProductRelationAddIn.dll</HintPath>
@@ -549,10 +550,10 @@
       <HintPath>..\packages\Dynamicweb.Scheduling.PIM.Amazon.0.9.3\lib\net472\Dynamicweb.Scheduling.PIM.Amazon.dll</HintPath>
     </Reference>
     <Reference Include="Dynamicweb.Scheduling.PIM.AssetsCheckinAddIn, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Dynamicweb.Scheduling.PIM.AssetsCheckinAddIn.2.0.2\lib\netstandard2.0\Dynamicweb.Scheduling.PIM.AssetsCheckinAddIn.dll</HintPath>
+      <HintPath>..\packages\Dynamicweb.Scheduling.PIM.AssetsCheckinAddIn.2.0.3\lib\netstandard2.0\Dynamicweb.Scheduling.PIM.AssetsCheckinAddIn.dll</HintPath>
     </Reference>
     <Reference Include="Dynamicweb.Scheduling.PIM.Channable, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Dynamicweb.Scheduling.PIM.Channable.1.1.1\lib\net472\Dynamicweb.Scheduling.PIM.Channable.dll</HintPath>
+      <HintPath>..\packages\Dynamicweb.Scheduling.PIM.Channable.2.0.0\lib\netstandard2.0\Dynamicweb.Scheduling.PIM.Channable.dll</HintPath>
     </Reference>
     <Reference Include="Dynamicweb.Scheduling.PIM.CleanupMissingAssetsAddIn, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Dynamicweb.Scheduling.PIM.CleanupMissingAssetsAddIn.1.0.1\lib\netstandard2.0\Dynamicweb.Scheduling.PIM.CleanupMissingAssetsAddIn.dll</HintPath>
@@ -560,11 +561,11 @@
     <Reference Include="Dynamicweb.Scheduling.PIM.EmailNotificationsAddIn, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Dynamicweb.Scheduling.PIM.EmailNotificationsAddIn.2.0.1\lib\net472\Dynamicweb.Scheduling.PIM.EmailNotificationsAddIn.dll</HintPath>
     </Reference>
-    <Reference Include="Dynamicweb.Scheduling.PIM.GDSNIntegration, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Dynamicweb.Scheduling.PIM.GDSNIntegration.0.0.3\lib\net472\Dynamicweb.Scheduling.PIM.GDSNIntegration.dll</HintPath>
+    <Reference Include="Dynamicweb.Scheduling.PIM.GDSNIntegration, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Dynamicweb.Scheduling.PIM.GDSNIntegration.0.1.0\lib\netstandard2.0\Dynamicweb.Scheduling.PIM.GDSNIntegration.dll</HintPath>
     </Reference>
     <Reference Include="Dynamicweb.Scheduling.PIM.IceCatIntegration, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Dynamicweb.Scheduling.PIM.IceCatIntegration.2.1.0\lib\netstandard2.0\Dynamicweb.Scheduling.PIM.IceCatIntegration.dll</HintPath>
+      <HintPath>..\packages\Dynamicweb.Scheduling.PIM.IceCatIntegration.2.1.1\lib\netstandard2.0\Dynamicweb.Scheduling.PIM.IceCatIntegration.dll</HintPath>
     </Reference>
     <Reference Include="Dynamicweb.Scheduling.Providers.AssortmentItemBuilderScheduledTaskAddIn, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Dynamicweb.Scheduling.Providers.AssortmentItemBuilderScheduledTaskAddIn.3.0.0\lib\netstandard2.0\Dynamicweb.Scheduling.Providers.AssortmentItemBuilderScheduledTaskAddIn.dll</HintPath>
@@ -573,10 +574,10 @@
       <HintPath>..\packages\Dynamicweb.Scheduling.Providers.FeedFileExportTaskAddIn.2.0.0\lib\netstandard2.0\Dynamicweb.Scheduling.Providers.FeedFileExportTaskAddIn.dll</HintPath>
     </Reference>
     <Reference Include="Dynamicweb.Scheduling.Providers.GroupsAsSmartSearchesScheduledTaskAddIn, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Dynamicweb.Scheduling.Providers.GroupsAsSmartSearchesScheduledTaskAddIn.2.0.2\lib\net46\Dynamicweb.Scheduling.Providers.GroupsAsSmartSearchesScheduledTaskAddIn.dll</HintPath>
+      <HintPath>..\packages\Dynamicweb.Scheduling.Providers.GroupsAsSmartSearchesScheduledTaskAddIn.3.0.0\lib\netstandard2.0\Dynamicweb.Scheduling.Providers.GroupsAsSmartSearchesScheduledTaskAddIn.dll</HintPath>
     </Reference>
     <Reference Include="Dynamicweb.Scheduling.Providers.LogsCleanupTaskAddIn, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Dynamicweb.Scheduling.Providers.LogsCleanupTaskAddIn.2.0.1\lib\net46\Dynamicweb.Scheduling.Providers.LogsCleanupTaskAddIn.dll</HintPath>
+      <HintPath>..\packages\Dynamicweb.Scheduling.Providers.LogsCleanupTaskAddIn.3.0.1\lib\netstandard2.0\Dynamicweb.Scheduling.Providers.LogsCleanupTaskAddIn.dll</HintPath>
     </Reference>
     <Reference Include="Dynamicweb.Scheduling.Providers.PointExpirationScheduledTaskAddIn, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Dynamicweb.Scheduling.Providers.PointExpirationScheduledTaskAddIn.3.1.0\lib\netstandard2.0\Dynamicweb.Scheduling.Providers.PointExpirationScheduledTaskAddIn.dll</HintPath>
@@ -588,16 +589,16 @@
       <HintPath>..\packages\Dynamicweb.Scheduling.Providers.RecurringOrdersScheduledTaskAddIn.4.0.1\lib\netstandard2.0\Dynamicweb.Scheduling.Providers.RecurringOrdersScheduledTaskAddIn.dll</HintPath>
     </Reference>
     <Reference Include="Dynamicweb.Scheduling.Providers.RepositoryAddIn, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Dynamicweb.Scheduling.Providers.RepositoryAddIn.1.1.1\lib\net46\Dynamicweb.Scheduling.Providers.RepositoryAddIn.dll</HintPath>
+      <HintPath>..\packages\Dynamicweb.Scheduling.Providers.RepositoryAddIn.2.0.0\lib\netstandard2.0\Dynamicweb.Scheduling.Providers.RepositoryAddIn.dll</HintPath>
     </Reference>
     <Reference Include="Dynamicweb.Scheduling.Providers.RunSqlAddIn, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Dynamicweb.Scheduling.Providers.RunSqlAddIn.1.1.1\lib\net46\Dynamicweb.Scheduling.Providers.RunSqlAddIn.dll</HintPath>
+      <HintPath>..\packages\Dynamicweb.Scheduling.Providers.RunSqlAddIn.2.0.0\lib\netstandard2.0\Dynamicweb.Scheduling.Providers.RunSqlAddIn.dll</HintPath>
     </Reference>
     <Reference Include="Dynamicweb.Scheduling.UrlAddIn, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Dynamicweb.Scheduling.UrlAddIn.1.0.0\lib\netstandard2.0\Dynamicweb.Scheduling.UrlAddIn.dll</HintPath>
     </Reference>
     <Reference Include="Dynamicweb.Security, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Dynamicweb.Security.12.0.4\lib\netstandard2.0\Dynamicweb.Security.dll</HintPath>
+      <HintPath>..\packages\Dynamicweb.Security.12.1.1\lib\netstandard2.0\Dynamicweb.Security.dll</HintPath>
     </Reference>
     <Reference Include="Dynamicweb.SmartSearch, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Dynamicweb.SmartSearch.2.1.0\lib\netstandard2.0\Dynamicweb.SmartSearch.dll</HintPath>
@@ -606,7 +607,7 @@
       <HintPath>..\packages\Dynamicweb.SmartSearch.Providers.Lucene.2.0.0\lib\net46\Dynamicweb.SmartSearch.Providers.Lucene.dll</HintPath>
     </Reference>
     <Reference Include="Dynamicweb.SmartSearch.Providers.User, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Dynamicweb.SmartSearch.Providers.User.2.1.4\lib\net472\Dynamicweb.SmartSearch.Providers.User.dll</HintPath>
+      <HintPath>..\packages\Dynamicweb.SmartSearch.Providers.User.3.0.0\lib\netstandard2.0\Dynamicweb.SmartSearch.Providers.User.dll</HintPath>
     </Reference>
     <Reference Include="Dynamicweb.Sms, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Dynamicweb.Sms.2.1.1\lib\net46\Dynamicweb.Sms.dll</HintPath>
@@ -621,10 +622,10 @@
       <HintPath>..\packages\Dynamicweb.Tracking.2.0.0\lib\netstandard2.0\Dynamicweb.Tracking.dll</HintPath>
     </Reference>
     <Reference Include="Dynamicweb.Tracking.Web, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Dynamicweb.Tracking.Web.2.0.0\lib\net472\Dynamicweb.Tracking.Web.dll</HintPath>
+      <HintPath>..\packages\Dynamicweb.Tracking.Web.2.0.1\lib\net472\Dynamicweb.Tracking.Web.dll</HintPath>
     </Reference>
-    <Reference Include="Dynamicweb.Translations.GoogleCloudTranslate, Version=0.1.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Dynamicweb.Translations.GoogleCloudTranslate.0.1.0\lib\netstandard2.0\Dynamicweb.Translations.GoogleCloudTranslate.dll</HintPath>
+    <Reference Include="Dynamicweb.Translations.GoogleCloudTranslate, Version=0.2.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Dynamicweb.Translations.GoogleCloudTranslate.0.2.1\lib\netstandard2.0\Dynamicweb.Translations.GoogleCloudTranslate.dll</HintPath>
     </Reference>
     <Reference Include="Dynamicweb.UI.Controls, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Dynamicweb.UI.Controls.2.3.1\lib\net472\Dynamicweb.UI.Controls.dll</HintPath>
@@ -633,7 +634,7 @@
       <HintPath>..\packages\Dynamicweb.UI.Elements.4.0.0\lib\net472\Dynamicweb.UI.Elements.dll</HintPath>
     </Reference>
     <Reference Include="Dynamicweb.UserManagement, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Dynamicweb.UserManagement.3.0.7\lib\netstandard2.0\Dynamicweb.UserManagement.dll</HintPath>
+      <HintPath>..\packages\Dynamicweb.UserManagement.3.1.0\lib\netstandard2.0\Dynamicweb.UserManagement.dll</HintPath>
     </Reference>
     <Reference Include="Dynamicweb.WebP, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Dynamicweb.WebP.2.0.0\lib\netstandard2.0\Dynamicweb.WebP.dll</HintPath>
@@ -687,10 +688,10 @@
       <HintPath>..\packages\SharpZipLib.0.86.0\lib\20\ICSharpCode.SharpZipLib.dll</HintPath>
     </Reference>
     <Reference Include="ImageGlue, Version=7.5.0.1, Culture=neutral, PublicKeyToken=d78d2cea5dcfdc98, processorArchitecture=MSIL">
-      <HintPath>..\packages\Dynamicweb.Imaging.Providers.ImageGlueProviders.1.0.9\lib\net472\ImageGlue.dll</HintPath>
+      <HintPath>..\packages\Dynamicweb.Imaging.Providers.ImageGlueProviders.1.0.10\lib\net472\ImageGlue.dll</HintPath>
     </Reference>
-    <Reference Include="IronPdf, Version=2021.12.0.4495, Culture=neutral, PublicKeyToken=94e1c31412563c75, processorArchitecture=MSIL">
-      <HintPath>..\packages\IronPdf.Slim.2021.12.4495\lib\net40\IronPdf.dll</HintPath>
+    <Reference Include="IronPdf, Version=2022.2.0.4887, Culture=neutral, PublicKeyToken=94e1c31412563c75, processorArchitecture=MSIL">
+      <HintPath>..\packages\IronPdf.Slim.2022.2.4887\lib\net40\IronPdf.dll</HintPath>
     </Reference>
     <Reference Include="Klarna.Checkout, Version=1.0.4.0, Culture=neutral, PublicKeyToken=2042c67c8f8466a5, processorArchitecture=MSIL">
       <HintPath>..\packages\Klarna.Checkout.1.0.4.0\lib\net30\Klarna.Checkout.dll</HintPath>
@@ -749,6 +750,81 @@
     <Reference Include="Microsoft.AspNet.Identity.Owin, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.AspNet.Identity.Owin.2.2.2\lib\net45\Microsoft.AspNet.Identity.Owin.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.AspNetCore, Version=2.2.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNetCore.2.2.0\lib\netstandard2.0\Microsoft.AspNetCore.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNetCore.Authentication.Abstractions, Version=2.2.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNetCore.Authentication.Abstractions.2.2.0\lib\netstandard2.0\Microsoft.AspNetCore.Authentication.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNetCore.Authentication.Core, Version=2.2.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNetCore.Authentication.Core.2.2.0\lib\netstandard2.0\Microsoft.AspNetCore.Authentication.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNetCore.Connections.Abstractions, Version=2.2.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNetCore.Connections.Abstractions.2.2.0\lib\netstandard2.0\Microsoft.AspNetCore.Connections.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNetCore.Diagnostics, Version=2.2.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNetCore.Diagnostics.2.2.0\lib\netstandard2.0\Microsoft.AspNetCore.Diagnostics.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNetCore.Diagnostics.Abstractions, Version=2.2.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNetCore.Diagnostics.Abstractions.2.2.0\lib\netstandard2.0\Microsoft.AspNetCore.Diagnostics.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNetCore.HostFiltering, Version=2.2.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNetCore.HostFiltering.2.2.0\lib\netstandard2.0\Microsoft.AspNetCore.HostFiltering.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNetCore.Hosting, Version=2.2.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNetCore.Hosting.2.2.0\lib\netstandard2.0\Microsoft.AspNetCore.Hosting.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNetCore.Hosting.Abstractions, Version=2.2.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNetCore.Hosting.Abstractions.2.2.0\lib\netstandard2.0\Microsoft.AspNetCore.Hosting.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNetCore.Hosting.Server.Abstractions, Version=2.2.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNetCore.Hosting.Server.Abstractions.2.2.0\lib\netstandard2.0\Microsoft.AspNetCore.Hosting.Server.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNetCore.Http, Version=2.2.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNetCore.Http.2.2.0\lib\netstandard2.0\Microsoft.AspNetCore.Http.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNetCore.Http.Abstractions, Version=2.2.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNetCore.Http.Abstractions.2.2.0\lib\netstandard2.0\Microsoft.AspNetCore.Http.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNetCore.Http.Extensions, Version=2.2.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNetCore.Http.Extensions.2.2.0\lib\netstandard2.0\Microsoft.AspNetCore.Http.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNetCore.Http.Features, Version=2.2.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNetCore.Http.Features.2.2.0\lib\netstandard2.0\Microsoft.AspNetCore.Http.Features.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNetCore.HttpOverrides, Version=2.2.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNetCore.HttpOverrides.2.2.0\lib\netstandard2.0\Microsoft.AspNetCore.HttpOverrides.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNetCore.Routing, Version=2.2.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNetCore.Routing.2.2.0\lib\netstandard2.0\Microsoft.AspNetCore.Routing.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNetCore.Routing.Abstractions, Version=2.2.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNetCore.Routing.Abstractions.2.2.0\lib\netstandard2.0\Microsoft.AspNetCore.Routing.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNetCore.Server.IIS, Version=2.2.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNetCore.Server.IIS.2.2.0\lib\netstandard2.0\Microsoft.AspNetCore.Server.IIS.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNetCore.Server.IISIntegration, Version=2.2.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNetCore.Server.IISIntegration.2.2.0\lib\netstandard2.0\Microsoft.AspNetCore.Server.IISIntegration.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNetCore.Server.Kestrel, Version=2.2.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNetCore.Server.Kestrel.2.2.0\lib\netstandard2.0\Microsoft.AspNetCore.Server.Kestrel.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNetCore.Server.Kestrel.Core, Version=2.2.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNetCore.Server.Kestrel.Core.2.2.0\lib\netstandard2.0\Microsoft.AspNetCore.Server.Kestrel.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNetCore.Server.Kestrel.Https, Version=2.2.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNetCore.Server.Kestrel.Https.2.2.0\lib\netstandard2.0\Microsoft.AspNetCore.Server.Kestrel.Https.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNetCore.Server.Kestrel.Transport.Abstractions, Version=2.2.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNetCore.Server.Kestrel.Transport.Abstractions.2.2.0\lib\netstandard2.0\Microsoft.AspNetCore.Server.Kestrel.Transport.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNetCore.Server.Kestrel.Transport.Sockets, Version=2.2.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNetCore.Server.Kestrel.Transport.Sockets.2.2.0\lib\netstandard2.0\Microsoft.AspNetCore.Server.Kestrel.Transport.Sockets.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNetCore.WebUtilities, Version=2.2.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNetCore.WebUtilities.2.2.0\lib\netstandard2.0\Microsoft.AspNetCore.WebUtilities.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.Bcl.AsyncInterfaces, Version=5.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Bcl.AsyncInterfaces.5.0.0\lib\net461\Microsoft.Bcl.AsyncInterfaces.dll</HintPath>
     </Reference>
@@ -789,6 +865,78 @@
       <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.3.6.0\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.Extensions.Configuration, Version=2.2.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.Configuration.2.2.0\lib\netstandard2.0\Microsoft.Extensions.Configuration.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Configuration.Abstractions, Version=2.2.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.Configuration.Abstractions.2.2.0\lib\netstandard2.0\Microsoft.Extensions.Configuration.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Configuration.Binder, Version=2.2.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.Configuration.Binder.2.2.0\lib\netstandard2.0\Microsoft.Extensions.Configuration.Binder.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Configuration.CommandLine, Version=2.2.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.Configuration.CommandLine.2.2.0\lib\netstandard2.0\Microsoft.Extensions.Configuration.CommandLine.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Configuration.EnvironmentVariables, Version=2.2.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.Configuration.EnvironmentVariables.2.2.0\lib\netstandard2.0\Microsoft.Extensions.Configuration.EnvironmentVariables.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Configuration.FileExtensions, Version=2.2.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.Configuration.FileExtensions.2.2.0\lib\netstandard2.0\Microsoft.Extensions.Configuration.FileExtensions.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Configuration.Json, Version=2.2.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.Configuration.Json.2.2.0\lib\netstandard2.0\Microsoft.Extensions.Configuration.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Configuration.UserSecrets, Version=2.2.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.Configuration.UserSecrets.2.2.0\lib\netstandard2.0\Microsoft.Extensions.Configuration.UserSecrets.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.DependencyInjection, Version=2.2.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.DependencyInjection.2.2.0\lib\net461\Microsoft.Extensions.DependencyInjection.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.DependencyInjection.Abstractions, Version=2.2.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.DependencyInjection.Abstractions.2.2.0\lib\netstandard2.0\Microsoft.Extensions.DependencyInjection.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.FileProviders.Abstractions, Version=2.2.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.FileProviders.Abstractions.2.2.0\lib\netstandard2.0\Microsoft.Extensions.FileProviders.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.FileProviders.Physical, Version=2.2.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.FileProviders.Physical.2.2.0\lib\netstandard2.0\Microsoft.Extensions.FileProviders.Physical.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.FileSystemGlobbing, Version=2.2.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.FileSystemGlobbing.2.2.0\lib\netstandard2.0\Microsoft.Extensions.FileSystemGlobbing.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Hosting.Abstractions, Version=2.2.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.Hosting.Abstractions.2.2.0\lib\netstandard2.0\Microsoft.Extensions.Hosting.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Logging, Version=2.2.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.Logging.2.2.0\lib\netstandard2.0\Microsoft.Extensions.Logging.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Logging.Abstractions, Version=2.2.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.Logging.Abstractions.2.2.0\lib\netstandard2.0\Microsoft.Extensions.Logging.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Logging.Configuration, Version=2.2.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.Logging.Configuration.2.2.0\lib\netstandard2.0\Microsoft.Extensions.Logging.Configuration.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Logging.Console, Version=2.2.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.Logging.Console.2.2.0\lib\netstandard2.0\Microsoft.Extensions.Logging.Console.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Logging.Debug, Version=2.2.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.Logging.Debug.2.2.0\lib\netstandard2.0\Microsoft.Extensions.Logging.Debug.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Logging.EventSource, Version=2.2.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.Logging.EventSource.2.2.0\lib\netstandard2.0\Microsoft.Extensions.Logging.EventSource.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.ObjectPool, Version=2.2.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.ObjectPool.2.2.0\lib\netstandard2.0\Microsoft.Extensions.ObjectPool.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Options, Version=2.2.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.Options.2.2.0\lib\netstandard2.0\Microsoft.Extensions.Options.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Options.ConfigurationExtensions, Version=2.2.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.Options.ConfigurationExtensions.2.2.0\lib\netstandard2.0\Microsoft.Extensions.Options.ConfigurationExtensions.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Primitives, Version=2.2.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.Primitives.2.2.0\lib\netstandard2.0\Microsoft.Extensions.Primitives.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.Identity.Client, Version=4.22.0.0, Culture=neutral, PublicKeyToken=0a613f4dd989e8ae, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Identity.Client.4.22.0\lib\net461\Microsoft.Identity.Client.dll</HintPath>
     </Reference>
@@ -809,6 +957,9 @@
     </Reference>
     <Reference Include="Microsoft.IO.RecyclableMemoryStream, Version=1.4.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.IO.RecyclableMemoryStream.1.4.1\lib\net46\Microsoft.IO.RecyclableMemoryStream.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Net.Http.Headers, Version=2.2.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Net.Http.Headers.2.2.0\lib\netstandard2.0\Microsoft.Net.Http.Headers.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Owin, Version=4.1.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Owin.4.1.1\lib\net45\Microsoft.Owin.dll</HintPath>
@@ -931,6 +1082,9 @@
     <Reference Include="System.Composition.TypedParts, Version=1.0.31.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Composition.TypedParts.1.0.31\lib\portable-net45+win8+wp8+wpa81\System.Composition.TypedParts.dll</HintPath>
     </Reference>
+    <Reference Include="System.Configuration.ConfigurationManager, Version=5.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Configuration.ConfigurationManager.5.0.0\lib\net461\System.Configuration.ConfigurationManager.dll</HintPath>
+    </Reference>
     <Reference Include="System.Data.Common, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Data.Common.4.3.0\lib\net451\System.Data.Common.dll</HintPath>
       <Private>True</Private>
@@ -939,10 +1093,14 @@
     <Reference Include="System.Data.OleDb, Version=4.0.1.1, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Data.OleDb.4.7.1\lib\net461\System.Data.OleDb.dll</HintPath>
     </Reference>
+    <Reference Include="System.Data.OracleClient" />
     <Reference Include="System.Data.SqlClient, Version=4.6.1.2, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Data.SqlClient.4.8.2\lib\net461\System.Data.SqlClient.dll</HintPath>
     </Reference>
     <Reference Include="System.Design" />
+    <Reference Include="System.Diagnostics.DiagnosticSource, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Diagnostics.DiagnosticSource.4.5.0\lib\net46\System.Diagnostics.DiagnosticSource.dll</HintPath>
+    </Reference>
     <Reference Include="System.DirectoryServices" />
     <Reference Include="System.Drawing.Common, Version=4.0.0.2, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Drawing.Common.5.0.2\lib\net461\System.Drawing.Common.dll</HintPath>
@@ -952,12 +1110,25 @@
     <Reference Include="System.IdentityModel.Tokens.Jwt, Version=5.6.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\System.IdentityModel.Tokens.Jwt.5.6.0\lib\net461\System.IdentityModel.Tokens.Jwt.dll</HintPath>
     </Reference>
+    <Reference Include="System.IO, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.IO.4.3.0\lib\net462\System.IO.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System.IO.Compression" />
+    <Reference Include="System.IO.Compression.FileSystem" />
+    <Reference Include="System.IO.Pipelines, Version=4.0.0.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.IO.Pipelines.4.5.2\lib\netstandard2.0\System.IO.Pipelines.dll</HintPath>
+    </Reference>
     <Reference Include="System.Memory, Version=4.0.1.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Memory.4.5.4\lib\net461\System.Memory.dll</HintPath>
     </Reference>
     <Reference Include="System.Net" />
-    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Net.Http, Version=4.1.1.3, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Net.Http.4.3.4\lib\net46\System.Net.Http.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System.Net.Http.Formatting, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.2.3\lib\net45\System.Net.Http.Formatting.dll</HintPath>
     </Reference>
@@ -972,6 +1143,11 @@
     <Reference Include="System.Reflection.Metadata, Version=1.4.3.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Reflection.Metadata.1.6.0\lib\netstandard2.0\System.Reflection.Metadata.dll</HintPath>
     </Reference>
+    <Reference Include="System.Runtime, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Runtime.4.3.0\lib\net462\System.Runtime.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System.Runtime.Caching" />
     <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=5.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Runtime.CompilerServices.Unsafe.5.0.0\lib\net45\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
@@ -983,26 +1159,59 @@
     </Reference>
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
+    <Reference Include="System.Security.AccessControl, Version=5.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Security.AccessControl.5.0.0\lib\net461\System.Security.AccessControl.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Security.Cryptography.Algorithms, Version=4.2.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Security.Cryptography.Algorithms.4.3.0\lib\net463\System.Security.Cryptography.Algorithms.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Security.Cryptography.Cng, Version=4.3.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Security.Cryptography.Cng.4.5.0\lib\net47\System.Security.Cryptography.Cng.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Security.Cryptography.Encoding, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Security.Cryptography.Encoding.4.3.0\lib\net46\System.Security.Cryptography.Encoding.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Security.Cryptography.Primitives, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Security.Cryptography.Primitives.4.3.0\lib\net46\System.Security.Cryptography.Primitives.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System.Security.Cryptography.ProtectedData, Version=5.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Security.Cryptography.ProtectedData.5.0.0\lib\net461\System.Security.Cryptography.ProtectedData.dll</HintPath>
     </Reference>
+    <Reference Include="System.Security.Cryptography.X509Certificates, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Security.Cryptography.X509Certificates.4.3.0\lib\net461\System.Security.Cryptography.X509Certificates.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Security.Permissions, Version=5.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Security.Permissions.5.0.0\lib\net461\System.Security.Permissions.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Security.Principal.Windows, Version=5.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Security.Principal.Windows.5.0.0\lib\net461\System.Security.Principal.Windows.dll</HintPath>
+    </Reference>
     <Reference Include="System.ServiceModel" />
-    <Reference Include="System.ServiceModel.Duplex, Version=4.8.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-      <HintPath>..\packages\System.ServiceModel.Duplex.4.8.0\lib\net461\System.ServiceModel.Duplex.dll</HintPath>
+    <Reference Include="System.ServiceModel.Duplex, Version=4.8.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.ServiceModel.Duplex.4.8.1\lib\net461\System.ServiceModel.Duplex.dll</HintPath>
     </Reference>
-    <Reference Include="System.ServiceModel.Http, Version=4.8.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-      <HintPath>..\packages\System.ServiceModel.Http.4.8.0\lib\net461\System.ServiceModel.Http.dll</HintPath>
+    <Reference Include="System.ServiceModel.Http, Version=4.8.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.ServiceModel.Http.4.8.1\lib\net461\System.ServiceModel.Http.dll</HintPath>
     </Reference>
-    <Reference Include="System.ServiceModel.NetTcp, Version=4.8.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-      <HintPath>..\packages\System.ServiceModel.NetTcp.4.8.0\lib\net461\System.ServiceModel.NetTcp.dll</HintPath>
+    <Reference Include="System.ServiceModel.NetTcp, Version=4.8.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.ServiceModel.NetTcp.4.8.1\lib\net461\System.ServiceModel.NetTcp.dll</HintPath>
     </Reference>
-    <Reference Include="System.ServiceModel.Primitives, Version=4.8.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-      <HintPath>..\packages\System.ServiceModel.Primitives.4.8.0\lib\net461\System.ServiceModel.Primitives.dll</HintPath>
+    <Reference Include="System.ServiceModel.Primitives, Version=4.8.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.ServiceModel.Primitives.4.8.1\lib\net461\System.ServiceModel.Primitives.dll</HintPath>
     </Reference>
-    <Reference Include="System.ServiceModel.Security, Version=4.8.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-      <HintPath>..\packages\System.ServiceModel.Security.4.8.0\lib\net461\System.ServiceModel.Security.dll</HintPath>
+    <Reference Include="System.ServiceModel.Security, Version=4.8.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.ServiceModel.Security.4.8.1\lib\net461\System.ServiceModel.Security.dll</HintPath>
     </Reference>
     <Reference Include="System.ServiceModel.Web" />
+    <Reference Include="System.ServiceProcess" />
     <Reference Include="System.Text.Encoding.CodePages, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Text.Encoding.CodePages.4.5.1\lib\net461\System.Text.Encoding.CodePages.dll</HintPath>
     </Reference>
@@ -4919,6 +5128,8 @@
     <Content Include="Admin\Public\InvoiceReporting.aspx" />
     <Content Include="Admin\Public\leftTriangle.svg" />
     <Content Include="Admin\Public\link.svg" />
+    <Content Include="Admin\Public\lock_open_white_24dp.svg" />
+    <Content Include="Admin\Public\lock_white_24dp.svg" />
     <Content Include="Admin\Public\Module\Economic\EconomicAuthorization.aspx" />
     <Content Include="Admin\Public\Module\EndpointManagement\EndpointAuthorization.aspx" />
     <Content Include="Admin\Public\OMC\Leads\SendScheduledLeadsEmail.aspx" />
@@ -5992,15 +6203,19 @@
     <Content Include="Admin\Update\Files\Templates\eCom\ProductCatalog\ProductViewListFacets.cshtml" />
     <Content Include="Admin\Update\Files\Templates\eCom\ProductCatalog\ProductViewList.cshtml" />
     <Content Include="Admin\Update\Files\Templates\eCom\ProductCatalog\ProductViewDetail.cshtml" />
+    <Content Include="Admin\Update\Files\Templates\eCom\ProductCatalog\ExportProductsMail.cshtml" />
+    <Content Include="Admin\Update\Files\Templates\eCom\ProductCatalog\ExportProductsErrorMail.cshtml" />
     <Content Include="Admin\Update\Files\Templates\eCom\CustomerExperienceCenter\PaginationHelper.cshtml" />
     <Content Include="Admin\Update\Files\Templates\eCom\CustomerExperienceCenter\OrderViewSearchList.cshtml" />
     <Content Include="Admin\Update\Files\Templates\eCom\CustomerExperienceCenter\OrderViewList.cshtml" />
     <Content Include="Admin\Update\Files\Templates\eCom\CustomerExperienceCenter\OrderViewDetail.cshtml" />
     <Content Include="Admin\Update\Files\Templates\eCom\CustomerExperienceCenter\Favorites\FavoriteLists.cshtml" />
     <Content Include="Admin\Update\Files\Templates\eCom\CustomerExperienceCenter\Favorites\FavoriteDetail.cshtml" />
+    <Content Include="Admin\Update\Files\Templates\eCom7\ShippingProvider\PostDanmarkServicePoints.cshtml" />
     <Content Include="Admin\Update\Files\Templates\eCom7\CheckoutHandler\QuickPayPaymentWindow\Post\InlineForm.cshtml" />
     <Content Include="Admin\Update\Files\Templates\eCom7\CheckoutHandler\ErrorTemplate\checkouthandler_error.cshtml" />
     <Content Include="Admin\Update\Files\Templates\eCom7\CheckoutHandler\EbizCharge\Payment\Payment.cshtml" />
+    <Content Include="Admin\Update\Files\Templates\eCom7\CheckoutHandler\DibsEasy\Form\HostedPaymentDibs.cshtml" />
     <Content Include="Admin\Update\Files\Templates\eCom7\CheckoutHandler\DibsEasy\Form\EmbededDibs.cshtml" />
     <Content Include="Admin\Update\Files\Templates\eCom7\CheckoutHandler\DibsEasy\Error\checkouthandler_error.cshtml" />
     <Content Include="Admin\Update\Files\Templates\eCom7\CheckoutHandler\AuthorizeNet\Post\PartialHostedForm.cshtml" />
@@ -6314,6 +6529,7 @@
     <Analyzer Include="..\packages\Microsoft.CodeAnalysis.Analyzers.2.9.6\analyzers\dotnet\cs\Microsoft.CodeAnalysis.Analyzers.dll" />
     <Analyzer Include="..\packages\Microsoft.CodeAnalysis.Analyzers.2.9.6\analyzers\dotnet\cs\Microsoft.CodeAnalysis.CSharp.Analyzers.dll" />
   </ItemGroup>
+  <ItemGroup />
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
@@ -6354,9 +6570,16 @@ call build.bat</PostBuildEvent>
     <Error Condition="!Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.3.6.0\build\net472\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.3.6.0\build\net472\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.targets'))" />
     <Error Condition="!Exists('..\packages\Dynamicweb.WebP.2.0.0\build\Dynamicweb.WebP.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Dynamicweb.WebP.2.0.0\build\Dynamicweb.WebP.props'))" />
     <Error Condition="!Exists('..\packages\Brotli.NET.2.0.4.2\build\Brotli.NET.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Brotli.NET.2.0.4.2\build\Brotli.NET.targets'))" />
+    <Error Condition="!Exists('..\packages\Microsoft.Extensions.Configuration.UserSecrets.2.2.0\build\netstandard2.0\Microsoft.Extensions.Configuration.UserSecrets.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.Extensions.Configuration.UserSecrets.2.2.0\build\netstandard2.0\Microsoft.Extensions.Configuration.UserSecrets.props'))" />
+    <Error Condition="!Exists('..\packages\Microsoft.Extensions.Configuration.UserSecrets.2.2.0\build\netstandard2.0\Microsoft.Extensions.Configuration.UserSecrets.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.Extensions.Configuration.UserSecrets.2.2.0\build\netstandard2.0\Microsoft.Extensions.Configuration.UserSecrets.targets'))" />
+    <Error Condition="!Exists('..\packages\Microsoft.AspNetCore.Server.IIS.2.2.0\build\netstandard2.0\Microsoft.AspNetCore.Server.IIS.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.AspNetCore.Server.IIS.2.2.0\build\netstandard2.0\Microsoft.AspNetCore.Server.IIS.targets'))" />
+    <Error Condition="!Exists('..\packages\Microsoft.AspNetCore.Server.IISIntegration.2.2.0\build\netstandard2.0\Microsoft.AspNetCore.Server.IISIntegration.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.AspNetCore.Server.IISIntegration.2.2.0\build\netstandard2.0\Microsoft.AspNetCore.Server.IISIntegration.targets'))" />
   </Target>
   <Import Project="..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.3.6.0\build\net472\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.targets" Condition="Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.3.6.0\build\net472\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.targets')" />
   <Import Project="..\packages\Brotli.NET.2.0.4.2\build\Brotli.NET.targets" Condition="Exists('..\packages\Brotli.NET.2.0.4.2\build\Brotli.NET.targets')" />
+  <Import Project="..\packages\Microsoft.Extensions.Configuration.UserSecrets.2.2.0\build\netstandard2.0\Microsoft.Extensions.Configuration.UserSecrets.targets" Condition="Exists('..\packages\Microsoft.Extensions.Configuration.UserSecrets.2.2.0\build\netstandard2.0\Microsoft.Extensions.Configuration.UserSecrets.targets')" />
+  <Import Project="..\packages\Microsoft.AspNetCore.Server.IIS.2.2.0\build\netstandard2.0\Microsoft.AspNetCore.Server.IIS.targets" Condition="Exists('..\packages\Microsoft.AspNetCore.Server.IIS.2.2.0\build\netstandard2.0\Microsoft.AspNetCore.Server.IIS.targets')" />
+  <Import Project="..\packages\Microsoft.AspNetCore.Server.IISIntegration.2.2.0\build\netstandard2.0\Microsoft.AspNetCore.Server.IISIntegration.targets" Condition="Exists('..\packages\Microsoft.AspNetCore.Server.IISIntegration.2.2.0\build\netstandard2.0\Microsoft.AspNetCore.Server.IISIntegration.targets')" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

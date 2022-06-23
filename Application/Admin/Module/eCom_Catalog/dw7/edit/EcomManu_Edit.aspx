@@ -36,6 +36,15 @@
                 <table class="formsTable">
                     <tr>
                         <td>
+                            <dw:TranslateLabel ID="tLabelId" runat="server" Text="ID"></dw:TranslateLabel>
+                        </td>
+                        <td>
+                            <asp:TextBox ID="Id" CssClass="std" runat="server" MaxLength="255" disabled="disabled"></asp:TextBox>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>
                             <dw:TranslateLabel ID="tLabelName" runat="server" Text="Navn"></dw:TranslateLabel>
                         </td>
                         <td>

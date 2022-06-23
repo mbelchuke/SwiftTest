@@ -5,8 +5,103 @@
         Rules for version number can be found there as well.         
 	-->
     
-    <current version="2232" releasedate="28-01-2022" />
+    <current version="2242" releasedate="31-05-2022" />
 
+    <package version="2242" releasedate="31-05-2022">
+        <file name="PostDanmarkServicePoints.cshtml" source="/Files/Templates/eCom7/ShippingProvider/" target="/Files/Templates/eCom7/ShippingProvider/" overwrite="false"/>
+    </package>
+
+    <package version="2241" releasedate="23-05-2022">
+        <file name="ExportProductsErrorMail.cshtml" source="/Files/Templates/eCom/ProductCatalog/" target="/Files/Templates/eCom/ProductCatalog/" overwrite="false"/>
+    </package>
+
+    <package version="2240" releasedate="23-05-2022">
+        <file name="HostedPaymentDibs.cshtml" source="/Files/Templates/eCom7/CheckoutHandler/DibsEasy/Form/" target="/Files/Templates/eCom7/CheckoutHandler/DibsEasy/Form/" overwrite="false"/>
+    </package>
+
+    <package version="2239" releasedate="20-04-2022">
+        <file name="ExportProductsMail.cshtml" source="/Files/Templates/eCom/ProductCatalog/" target="/Files/Templates/eCom/ProductCatalog/" overwrite="false"/>
+    </package>
+
+    <package version="2238" releasedate="19-04-2022">
+        <database file="Ecom.mdb">
+            <EcomFeed>
+                <sql conditional="SELECT COUNT(*) FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME = 'EcomFeed' AND COLUMN_NAME = 'FeedLoadVariantInfoOnVariants'">
+                    ALTER TABLE [EcomFeed] ADD [FeedLoadVariantInfoOnVariants] [BIT] NOT NULL DEFAULT 1
+                </sql>
+            </EcomFeed>
+        </database>
+    </package> 
+
+    <package version="2237" releasedate="19-04-2022">
+        <setting key="/Globalsettings/Modules/DataIntegration/Job/TimeoutInMilliseconds" value="0" overwrite="false" />
+    </package>
+    
+    <package version="2236" date="06-04-2022">
+        <database file="Ecom.mdb">
+            <EcomOrderStates>
+                <sql conditional="SELECT COUNT(*) FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME = 'EcomOrderStates' AND COLUMN_NAME = 'OrderStateColor'">
+                    ALTER TABLE [EcomOrderStates] ADD [OrderStateColor] [nvarchar](255) NULL;
+                </sql>
+            </EcomOrderStates>
+        </database>
+    </package>
+    
+ 
+
+    <package version="2235" date="16-03-2022">
+	    <database file="Ecom.mdb">
+            <EcomCustomerFavoriteProducts>
+                <sql conditional="">
+                    ALTER TABLE [EcomCustomerFavoriteProducts] DROP CONSTRAINT [DW_PK_EcomCustomerFavoriteProducts];
+                    ALTER TABLE [EcomCustomerFavoriteProducts] ADD CONSTRAINT [DW_PK_EcomCustomerFavoriteProducts] PRIMARY KEY NONCLUSTERED (
+	                    [FavoriteListId] ASC,
+	                    [ProductId] ASC,
+	                    [ProductVariantId] ASC
+                    );
+                    ALTER TABLE [EcomCustomerFavoriteProducts] ALTER COLUMN [ProductLanguageId] [nvarchar](50) NULL;
+                </sql>
+            </EcomCustomerFavoriteProducts>
+        </database>
+    </package>
+
+    <package version="2234" date="09-03-2022">
+	    <database file="Ecom.mdb">
+            <EcomOrders>
+                <sql conditional="SELECT COUNT(*) FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME = 'EcomOrders' AND COLUMN_NAME = 'OrderParentOrderId'">
+                    ALTER TABLE [EcomOrders] ADD [OrderParentOrderId] [nvarchar](255) NULL;
+                </sql>
+                <sql conditional="SELECT COUNT(*) FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME = 'EcomOrders' AND COLUMN_NAME = 'OrderLedgerType'">
+                    ALTER TABLE [EcomOrders] ADD [OrderLedgerType] [nvarchar](255) NULL;
+                </sql>
+                <sql conditional="SELECT COUNT(*) FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME = 'EcomOrders' AND COLUMN_NAME = 'OrderCustomerAddressId'">
+                    ALTER TABLE [EcomOrders] ADD [OrderCustomerAddressId] [int] NULL;
+                </sql>
+                <sql conditional="SELECT COUNT(*) FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME = 'EcomOrders' AND COLUMN_NAME = 'OrderDeliveryAddressId'">
+                    ALTER TABLE [EcomOrders] ADD [OrderDeliveryAddressId] [int] NULL;
+                </sql>
+            </EcomOrders>
+        </database>
+    </package>
+
+    <package version="2233" releasedate="22-02-2022">
+        <database file="Ecom.mdb">
+            <EcomProductCategoryFieldTranslation>
+                <sql conditional="SELECT COUNT(*) FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME='EcomProductFieldTranslation' AND COLUMN_NAME='ProductFieldTranslationErrorMessage'">
+                    ALTER TABLE [EcomProductFieldTranslation] ADD [ProductFieldTranslationErrorMessage] [nvarchar](255) NULL;              
+                </sql>
+                <sql conditional="SELECT IIF(COUNT(*) > 0, 0, 1) FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME='EcomProductField' AND COLUMN_NAME='ProductFieldValidationErrorMessage'">
+                    DECLARE @defaultLanguageId as nvarchar(50);
+                    SET @defaultLanguageId = (SELECT TOP 1 [LanguageId] FROM [EcomLanguages] WHERE [LanguageIsDefault] = 1);
+
+                    UPDATE [EcomProductFieldTranslation]
+                    SET [ProductFieldTranslationErrorMessage] = (SELECT [ProductFieldValidationErrorMessage] FROM [EcomProductField] WHERE [ProductFieldTranslationFieldID] = [ProductFieldId])
+                    WHERE [ProductFieldTranslationLanguageID] = @defaultLanguageId AND [ProductFieldTranslationErrorMessage] IS NULL;                  
+                </sql>
+            </EcomProductCategoryFieldTranslation>
+        </database>
+    </package>
+    
     <package version="2232" date="28-01-2022">
 	    <database file="Ecom.mdb">
             <EcomVariantsOptions>
@@ -1139,7 +1234,7 @@
     </package>
     
     <package version="2138" releasedate="02-10-2019">
-        <setting key="/Globalsettings/Ecom/Product/Details/Extensions" value="jpg,jpeg,png,bmp,tiff,pdf,docx,xlsx,ppt,avi" overwrite="false" />
+        <setting key="/Globalsettings/Ecom/Product/Details/Extensions" value="jpg,jpeg,png,bmp,tif,tiff,pdf,docx,xlsx,ppt,avi,webp" overwrite="false" />
         <database file="Ecom.mdb">
             <DetailsGroup>
 				<sql conditional="">

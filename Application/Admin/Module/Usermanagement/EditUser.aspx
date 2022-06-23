@@ -68,7 +68,7 @@
         <% End If %>
 
             var isValidEmail = function (email) {
-                var emailRegEx = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i;
+                var emailRegEx = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i;
                 return emailRegEx.test(email);
             };
 
@@ -489,7 +489,7 @@
                             </td>
                         </tr>
                     </table>
-                    <dw:FileManager ID="fmImage" Name="fmImage" Extensions="jpg,png,gif,jpeg,bmp,webp" runat="server" Label="Image" />
+                    <dw:FileManager ID="fmImage" Name="fmImage" Extensions="jpg,png,gif,jpeg,bmp,webp,tif,tiff" runat="server" Label="Image" />
                     <%If License.IsModuleAvailable("EmailMarketing") AndAlso Dynamicweb.Security.Licensing.LicenseManager.LicenseHasFeature("EmailMarketing") Then%>
                     <dwc:CheckBox runat="server" ID="CommunicationEmail" Label="Email permission" />
                     <%End If%>

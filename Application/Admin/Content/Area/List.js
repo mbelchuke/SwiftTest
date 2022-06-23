@@ -295,7 +295,7 @@ function onContextMenuSelectView(sender, args) {
                 ret.push(contextAreaActive ? 'cmdInactive' : 'cmdActive');
             }
 
-            if (AreaPermissions.canDelete(areaId) && areaId != 1) {
+            if (AreaPermissions.canDelete(areaId)) {
                 ret.push('cmdDelete');
             }
 

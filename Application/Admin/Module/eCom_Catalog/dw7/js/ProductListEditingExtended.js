@@ -2503,14 +2503,7 @@ Dynamicweb.PIM.BulkEdit.prototype.selectImageForProduct = function (e, btn, cont
         multiSelect: true,
         allowCreateFolder: allowCreateFolder,
         onSelected: function (filePathes) {
-            for (let i = 0; i < filePathes.length; i++) {
-                let filePath = filePathes[i];
-                let relPath = _makeRelativePath("/Files", filePath);
-                if (relPath && relPath.substring(0, 1) != "/") {
-                    relPath = "/" + relPath;
-                }
-                self.addFilesToImageDetails([relPath], controlId, imagesContainer, categoryId, false);
-            }
+            self.addFilesToImageDetails(filePathes, controlId, imagesContainer, categoryId, false);
         },
         searchTerm: productNumber
     });

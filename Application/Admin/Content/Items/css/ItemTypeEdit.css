@@ -474,41 +474,33 @@ div.autocomplete {
     box-shadow: 1px 1px 3px #dddddd;
 }
 
-    div.autocomplete.autocomplete-indicator {
-        width: 300px;
-    }
+div.autocomplete.autocomplete-indicator {
+    width: 300px;
+}
 
-        div.autocomplete.autocomplete-indicator img {
-            margin-left: 50%;
-            margin-top: -2px;
-            vertical-align: middle;
-            height: 18px;
-            width: 18px;
-        }
+div.autocomplete.autocomplete-indicator ul,
+div.autocomplete ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
 
-        div.autocomplete.autocomplete-indicator ul,
-        div.autocomplete ul {
-            list-style-type: none;
-            margin: 0;
-            padding: 0;
-        }
+div.autocomplete ul li.selected {
+    background-color: #FFEB3B;
+}
 
-            div.autocomplete ul li.selected {
-                background-color: #FFEB3B;
-            }
-
-            div.autocomplete.autocomplete-indicator ul li,
-            div.autocomplete ul li {
-                -moz-box-sizing: border-box;
-                -webkit-box-sizing: border-box;
-                box-sizing: border-box;
-                list-style-type: none;
-                display: block;
-                margin: 0;
-                padding: 2px;
-                height: 18px;
-                cursor: pointer;
-            }
+div.autocomplete.autocomplete-indicator ul li,
+div.autocomplete ul li {
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    list-style-type: none;
+    display: block;
+    margin: 0;
+    padding: 2px;
+    height: 18px;
+    cursor: pointer;
+}
 
 .language-selector.dropdown {
     border-top-width: 1px !important;

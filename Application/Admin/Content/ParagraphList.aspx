@@ -805,6 +805,8 @@
         </dw:ContextMenuButton>
          <dw:ContextMenuButton ID="DeleteGridRowButton" runat="server" Divide="Before" Text="Delete row" Icon="Delete" OnClientClick="deleteGridRow()">
         </dw:ContextMenuButton>
+         <dw:ContextMenuButton ID="GridrowPermissions" runat="server" Divide="Before" Text="Permissions" Icon="Lock" OnClientClick="gridPermissions()">
+        </dw:ContextMenuButton>
     </dw:ContextMenu>
 
     <dw:Dialog runat="server" ID="dlgEditGridRow" Title="Edit row" Size="Large" HidePadding="true" ShowOkButton="true" ShowCancelButton="true" ShowClose="false" OkAction="saveGridRow();">

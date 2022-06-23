@@ -1284,3 +1284,49 @@ window.addEventListener("load", (event) => {
         reInitEditors(ckEditors);
     });
 });
+
+
+window.addEventListener("load", (event) => {
+    const allRanges = document.querySelectorAll(".item-field-value-container");
+
+    allRanges.forEach(container => {
+        const range = container.querySelector("input[type=range]");
+        if (range) {
+            const bubble = container.querySelector("output");
+
+            range.addEventListener("input", () => {
+                setBubble(range, bubble);
+            });
+            setBubble(range, bubble);
+
+            setTicks(range);
+        }
+    });
+
+    function setBubble(range, bubble) {
+        const val = range.value;
+        bubble.innerHTML = val;
+
+        // magic numbers based on size of the native UI thumb; 250 - width of range input
+        const min = range.min ? range.min : 0;
+        const max = range.max ? range.max : 100;
+        const newVal = Number(((val - min) * 100) / (max - min));
+        bubble.style.left = `calc(${newVal * 250 / 100}px + (${8 - newVal * 0.15}px))`;
+    }
+
+    function setTicks(element) {
+        if ('list' in element && 'min' in element && 'max' in element && 'step' in element) {
+            var datalist = document.createElement('datalist'),
+                minimum = parseInt(element.getAttribute('min')),
+                step = parseFloat(element.getAttribute('step')),
+                maximum = parseInt(element.getAttribute('max'));
+            if (step >= 1) {
+                datalist.id = element.getAttribute('list');
+                for (var i = minimum; i < maximum + step; i = i + step) {
+                    datalist.innerHTML += "<option value=" + i + "></option>";
+                }
+                element.parentNode.insertBefore(datalist, element.nextSibling);
+            }
+        }
+    }
+});

@@ -154,7 +154,7 @@
                             </tr>
                         </table>
                         <dwc:CheckBox runat="server" ID="GeoLocationIsCustom" Label="GeoLocationIsCustom" />
-                        <dw:FileManager ID="GeoLocationImage" Name="GeoLocationImage" Extensions="jpg,png,gif,webp" runat="server" Label="Image" />
+                        <dw:FileManager ID="GeoLocationImage" Name="GeoLocationImage" Extensions="jpg,png,gif,webp,tif,tiff" runat="server" Label="Image" />
                     </dw:GroupBox>
 
                     <script type="text/javascript" src="Maps.js"></script>

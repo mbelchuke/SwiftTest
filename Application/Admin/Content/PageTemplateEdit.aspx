@@ -79,7 +79,7 @@
             <dwc:GroupBox runat="server">
                 <dwc:InputText runat="server" ID="TemplateName" Label="Navn" ValidationMessage="" MaxLength="255" />
                 <dwc:InputText runat="server" ID="TemplateDescription" Label="Beskrivelse" MaxLength="255" />
-                <dw:FileManager runat="server" ID="TemplateImage" Name="TemplateImage"  Label="Image" Extensions="jpg,gif,png,swf,webp" />
+                <dw:FileManager runat="server" ID="TemplateImage" Name="TemplateImage"  Label="Image" Extensions="jpg,gif,png,swf,webp,tif,tiff" />
                 <div id="isTemplateRow" runat="server" visible="false">
                     <dwc:CheckBox ID="isTemplate" runat="server" Value="1" Label="Aktiv" SelectedFieldValue="1" />
                 </div>

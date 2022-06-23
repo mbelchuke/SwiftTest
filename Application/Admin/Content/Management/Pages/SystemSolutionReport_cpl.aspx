@@ -224,7 +224,7 @@
                         </tr>
                         <tr>
                             <td>
-                                <dw:TranslateLabel ID="TranslateLabel26" runat="server" Text="Number of pages" />
+                                <dw:TranslateLabel ID="TranslateLabel26" runat="server" Text="Number of items" />
                             </td>
                             <td>
                                 <%= NumberOfItemsOnPagesAndParagraphs()%>

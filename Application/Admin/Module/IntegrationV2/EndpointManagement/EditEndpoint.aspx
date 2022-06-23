@@ -17,7 +17,7 @@
     <script src="/Admin/Resources/js/layout/Actions.js" type="text/javascript"></script>
 
     <script type="text/javascript">
-        isUrlRegExp = /^((((https?|ftp|gopher|telnet|file|notes|ms-help):((\/\/)|(\\\\)))|(\/admin\/public))+[\w\d:#@%/;$()~_?\+-=\\\.&']*)$/i;        
+        isUrlRegExp = /^((((https?|ftp|gopher|telnet|file|notes|ms-help):((\/\/)|(\\\\)))|(\/admin\/public))+[\w\d:#@%/;$()~_?\+-=\\\.&']*)$/i;
         isValid = function () {
             var result = true;
             dwGlobal.hideAllControlsErrors(null, "");
@@ -61,10 +61,7 @@
         }
 
         testEndpoint = function () {
-            var url = "TestEndpoint.aspx?id=<%= If(Not IsNothing(CurrentEndpoint), CurrentEndpoint.Id.ToString, String.Empty) %>&";
-            var backUrl = escape("<%= EditUrl() %>");
-            url += "backUrl=" + backUrl;
-            document.location = url;
+            initiatePostBack("TestTool", "TestTool")
         }
 
         var KeyValueList = function () { }
@@ -81,7 +78,7 @@
 
                 if (!optionName || optionName == '') {
                     grid.deleteRows([row]);
-                }else if (confirm(KeyValueList._message('message-delete-row').replace('%%', optionName))) {
+                } else if (confirm(KeyValueList._message('message-delete-row').replace('%%', optionName))) {
                     grid.deleteRows([row]);
                 }
             }
@@ -153,7 +150,7 @@
                     <dwc:InputText ID="txtFullUrl" runat="server" Label="Full Url" Disabled="true" Visible="false" />
                     <dwc:CheckBox runat="server" ID="cbDynamicwebService" Label="Connects to standard Dynamicweb codeunit service" OnClick="useDynamicwebServiceClick()" />
                     <dwc:InputText runat="server" ID="txtDynamicwebRequest" Label="Dynamicweb Codeunit Request" Visible="false" />
-                    <dwc:SelectPicker runat="server" ID="spRequestType"  CssClass="selectpicker" Name="spRequestType" Label="Type">
+                    <dwc:SelectPicker runat="server" ID="spRequestType" CssClass="selectpicker" Name="spRequestType" Label="Type">
                         <asp:ListItem Text="GET" Value="GET"></asp:ListItem>
                         <asp:ListItem Text="POST" Value="POST"></asp:ListItem>
                     </dwc:SelectPicker>
@@ -172,7 +169,7 @@
                             </asp:TemplateField>
                             <asp:TemplateField HeaderText="Value">
                                 <ItemTemplate>
-                                    <asp:TextBox ID="txValue" CssClass="form-control" Text='<%#Eval("Value")%>' runat="server" />                                        
+                                    <asp:TextBox ID="txValue" CssClass="form-control" Text='<%#Eval("Value")%>' runat="server" />
                                 </ItemTemplate>
                             </asp:TemplateField>
                             <asp:TemplateField HeaderText="Delete" HeaderStyle-Width="75">
@@ -182,9 +179,15 @@
                             </asp:TemplateField>
                         </Columns>
                     </dw:EditableGrid>
-                    <span class="hidden message-delete-row"><dw:TranslateLabel ID="lbDeleteRow" Text="Are you sure you want to delete an option '%%' ?" runat="server" /></span>
-                    <span class="hidden message-not-specified"><dw:TranslateLabel ID="lbNotSpecified" Text="Not specified" runat="server" /></span>
-                    <span class="hidden message-not-unique-values"><dw:TranslateLabel ID="lbNotUnique" Text="The key is not unique '%%'." runat="server" /></span>
+                    <span class="hidden message-delete-row">
+                        <dw:TranslateLabel ID="lbDeleteRow" Text="Are you sure you want to delete an option '%%' ?" runat="server" />
+                    </span>
+                    <span class="hidden message-not-specified">
+                        <dw:TranslateLabel ID="lbNotSpecified" Text="Not specified" runat="server" />
+                    </span>
+                    <span class="hidden message-not-unique-values">
+                        <dw:TranslateLabel ID="lbNotUnique" Text="The key is not unique '%%'." runat="server" />
+                    </span>
                 </dw:GroupBox>
                 <dw:GroupBox runat="server" ID="gbQueryParameters" Title="Query Parameters">
                     <dw:EditableGrid ID="parametersGrid" AllowAddingRows="true" AddNewRowMessage="Click here to add new query parameter..." ShowHeader="true"
