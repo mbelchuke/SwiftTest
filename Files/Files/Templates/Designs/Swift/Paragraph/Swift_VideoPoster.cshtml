@@ -117,10 +117,13 @@
 	if (!string.IsNullOrEmpty(Model.Item.GetString("Title")) && !Model.Item.GetBoolean("HideTitle"))
 	{
 		string titleFontSize = Model.Item.GetRawValueString("TitleFontSize", "display-1");
+		string headingLevel = Model.Item.GetString("HeadingLevel", "h2");
+		string headingLevelStart = $"<{headingLevel} class=\"{titleFontSize} m-0\">";
+		string headingLevelStop = $"</{headingLevel}>";
 
-		<h2 class="@titleFontSize m-0">
+		@headingLevelStart
 			<span class="@maxWidth">@Model.Item.GetString("Title")</span>
-		</h2>
+		@headingLevelStop
 	}
 }
 
@@ -196,7 +199,8 @@
 
 	if (link != null && !string.IsNullOrEmpty(Model.Item.GetString("ButtonLabel")))
 	{
-		string target = link.IsExternal ? "target=\"_blank\"" : "";
+		string target = Pageview.AreaSettings.GetBoolean("OpenLinksInNewTab") && link.IsExternal ? "target=\"_blank\"" : "";
+		string rel = Pageview.AreaSettings.GetBoolean("OpenLinksInNewTab") && link.IsExternal ? "rel=\"noopener\"" : "";
 
 		string buttonStyle = Model.Item.GetRawValueString("ButtonStyle", "primary");
 		buttonStyle = buttonStyle == "primary" ? "btn-primary" : buttonStyle;
@@ -208,14 +212,15 @@
 		ButtonSize = ButtonSize == "large" ? " btn-lg" : ButtonSize;
 
 		<div class="mt-0">
-			<a href="@link.Url" class="btn @buttonStyle@(ButtonSize)@(StretchedLink)">@Model.Item.GetString("ButtonLabel")</a>
+			<a href="@link.Url" @target @rel class="btn @buttonStyle@(ButtonSize)@(StretchedLink)">@Model.Item.GetString("ButtonLabel")</a>
 		</div>
 	}
 	else if (link != null && !string.IsNullOrEmpty(link.Url))
 	{
-		string target = link.IsExternal ? "target=\"_blank\"" : "";
+		string target = Pageview.AreaSettings.GetBoolean("OpenLinksInNewTab") && link.IsExternal ? "target=\"_blank\"" : "";
+		string rel = Pageview.AreaSettings.GetBoolean("OpenLinksInNewTab") && link.IsExternal ? "rel=\"noopener\"" : "";
 
-		<a href="@link.Url" @target class="@StretchedLink">
+		<a href="@link.Url" @target @rel class="@StretchedLink">
 			<span class="visually-hidden">@Model.Item.GetString("Title")</span>
 		</a>
 	}

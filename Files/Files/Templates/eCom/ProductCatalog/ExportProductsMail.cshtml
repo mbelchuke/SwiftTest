@@ -1,8 +1,5 @@
-@using Dynamicweb.Rendering
-@using Dynamicweb.Ecommerce.ProductCatalog.Export
-@inherits ViewModelTemplate<ExportFileViewModel>
 <div class="panel-body">
     <p>You can download exported products archive from following link</p>
 
-    <a href="@Model.DownloadLink" target="_blank">@Model.FileName</a>
+    <a href="@GetValue("Ecom:ProductExport.ExportFilePath")" target="_blank">@GetValue("Ecom:ProductExport.ExportFileName")</a>
 </div>
