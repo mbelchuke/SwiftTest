@@ -260,6 +260,10 @@
                                 }
                             });
                         } else {
+                            if (!args.row.get_propertyValue("SimpleVariant")) {
+                                args.cancel = true;
+                                return;
+                            }
                             collectionHelper.forEach(dataColumns, function (column) {
                                 var item;
                                 item = column.editor.findItem(function (x) { return x.value === VALUE_ALL; });

@@ -162,13 +162,43 @@
         $('DeleteDefaultAddressMessageRow').style.display = show ? 'table-row' : 'none';
     }
 
-    function toggleCreateProfileRedirect() {        
+    function toggleCreateProfileRedirect() {
         if ($('CreateProfileRedirectTypePage').checked) {
             $('CreateProfileRedirectPageDiv').style.display = 'block';
-            $('CreateProfileRedirectTemplateDiv').style.display = 'none';            
+            $('CreateProfileRedirectTemplateDiv').style.display = 'none';
         } else {
-            $('CreateProfileRedirectPageDiv').style.display = 'none';            
-            $('CreateProfileRedirectTemplateDiv').style.display = 'block';            
+            $('CreateProfileRedirectPageDiv').style.display = 'none';
+            $('CreateProfileRedirectTemplateDiv').style.display = 'block';
+        }
+    }
+
+    function toggleUserNotificationRedirect() {
+        if ($('UserNotificationRedirectTypePage').checked) {
+            $('UserNotificationRedirectPageDiv').style.display = 'block';
+            $('UserNotificationRedirectTemplateDiv').style.display = 'none';
+        } else {
+            $('UserNotificationRedirectPageDiv').style.display = 'none';
+            $('UserNotificationRedirectTemplateDiv').style.display = 'block';
+        }
+    }
+
+    function togglePasswordRecoveryRedirect() {
+        if ($('PasswordRecoveryRedirectTypePage').checked) {
+            $('PasswordRecoveryEmailRedirectPageDiv').style.display = 'block';
+            $('PasswordRecoveryRedirectTemplateDiv').style.display = 'none';
+        } else {
+            $('PasswordRecoveryEmailRedirectPageDiv').style.display = 'none';
+            $('PasswordRecoveryRedirectTemplateDiv').style.display = 'block';
+        }
+    }
+
+    function toggleNotificationRedirect() {
+        if ($('NotificationRedirectTypePage').checked) {
+            $('NotificationRedirectPageDiv').style.display = 'block';
+            $('NotificationRedirectTemplateDiv').style.display = 'none';
+        } else {
+            $('NotificationRedirectPageDiv').style.display = 'none';
+            $('NotificationRedirectTemplateDiv').style.display = 'block';
         }
     }
 
@@ -219,7 +249,7 @@
 <dw:ModuleHeader ID="ModuleHeader1" runat="server" ModuleSystemName="UserManagementFrontend" />
 
 <input type="hidden" name="UserManagementFrontend_settings"
-    value="ShowRadio,ListTemplate,ListUserSelectorHidden,ListIncludeSubs,ListIncludeSubsRadio,ListIncludeSubsLevels,DetailUserTemplate,DetailGroupTemplate,ListEditUserTemplate,ShowProfileTemplate,CreateProfileTemplate,CreateProfileApprovalRadio,CreateProfileNewUserGroupsHidden,ConfirmationEmailTemplate,ConfirmationEmailFromAddress,ConfirmationEmailSubject,NotificationEmailTemplate,NotificationEmailFromAddress,NotificationEmailSubject,NotificationEmailRecipientsHidden,CreateProfileSelectableGroupsHidden,ListEditUserSelectableGroupsHidden,ShowProfileAllowEdit,CreateProfileRedirectType,CreateProfileRedirectPage,CreateProfileRedirectTemplate,CreateProfileAutoLogin,ApprovalRedirectPage,ListSortByRadio,ListSortOrderRadio,ShowProfileEditUserTemplate,ShowProfileEditAddressesTemplate,ShowProfileViewAddressesTemplate,ShowProfileAddAddressTemplate,ShowProfileSelectableGroupsHidden,UploadedImagesFolder,UploadedImagesEnableMaxWidth,UploadedImagesMaxWidth,UploadedImagesEnableMaxHeight,UploadedImagesMaxHeight,PagingSettings,ErrorEmtyPassword,ErrorDuplicateEmail,ErrorPasswordsNotMatch,ErrorWrongPassword,ErrorPasswordLength,ErrorEmtyUsername,ErrorEmtyEmail,ErrorEmailNotFound,IncorrectEmailFormat,SearchTemplate,SearchResultTemplate,LoggedInRedirectPage,VCardFeildsString, ErrorUsernameTaken,DeleteMainAddressMessage,DeleteDefaultAddressMessage,DeleteAddressMessage,ErrorIllegalPasswordCharacters,ErrorPasswordSmallLength,ErrorPasswordComplexity,ErrorPasswordReuse,ShowProfileUser,ShowProfileUserID_CustomSelector,LoginTemplate,PasswordResetTemplate,PasswordRecoveryTemplate,PasswordRecoveryUserFields,PasswordRecoveryOperator,PasswordRecoveryMethod, PasswordRecoveryLinkLifeTime, PasswordRecoveryEmailTemplate,PasswordRecoveryEmailFrom, PasswordRecoveryEmailSubject,ErrorEmptyField,LoginSuccessRedirectToPage,MatchAnonymousOrdersOnEmail,DoUpdateUsersByEmail,RequireUniqueEmails, ConfirmationEmailFromName,NotificationEmailFromName,UserNotificationEmailTemplate,UserNotificationEmailFromAddress,UserNotificationEmailFromName,UserNotificationEmailSubject,ErrorWrongCountryCode,UseEmailForUserName,CreateProfileEmailAllowedActivity,EditProfileEmailAllowedActivity,SetProfile" />
+    value="ShowRadio,ListTemplate,ListUserSelectorHidden,ListIncludeSubs,ListIncludeSubsRadio,ListIncludeSubsLevels,DetailUserTemplate,DetailGroupTemplate,ListEditUserTemplate,ShowProfileTemplate,CreateProfileTemplate,CreateProfileApprovalRadio,CreateProfileNewUserGroupsHidden,ConfirmationEmailTemplate,ConfirmationEmailFromAddress,ConfirmationEmailSubject,NotificationRedirectType,NotificationRedirectPage,NotificationEmailTemplate,NotificationEmailFromAddress,NotificationEmailSubject,NotificationEmailRecipientsHidden,CreateProfileSelectableGroupsHidden,ListEditUserSelectableGroupsHidden,ShowProfileAllowEdit,CreateProfileRedirectType,CreateProfileRedirectPage,CreateProfileRedirectTemplate,CreateProfileAutoLogin,ApprovalRedirectPage,ListSortByRadio,ListSortOrderRadio,ShowProfileEditUserTemplate,ShowProfileEditAddressesTemplate,ShowProfileViewAddressesTemplate,ShowProfileAddAddressTemplate,ShowProfileSelectableGroupsHidden,UploadedImagesFolder,UploadedImagesEnableMaxWidth,UploadedImagesMaxWidth,UploadedImagesEnableMaxHeight,UploadedImagesMaxHeight,PagingSettings,ErrorEmtyPassword,ErrorDuplicateEmail,ErrorPasswordsNotMatch,ErrorWrongPassword,ErrorPasswordLength,ErrorEmtyUsername,ErrorEmtyEmail,ErrorEmailNotFound,IncorrectEmailFormat,SearchTemplate,SearchResultTemplate,LoggedInRedirectPage,VCardFeildsString, ErrorUsernameTaken,DeleteMainAddressMessage,DeleteDefaultAddressMessage,DeleteAddressMessage,ErrorIllegalPasswordCharacters,ErrorPasswordSmallLength,ErrorPasswordComplexity,ErrorPasswordReuse,ShowProfileUser,ShowProfileUserID_CustomSelector,LoginTemplate,PasswordResetTemplate,PasswordRecoveryTemplate,PasswordRecoveryUserFields,PasswordRecoveryOperator,PasswordRecoveryMethod, PasswordRecoveryLinkLifeTime,PasswordRecoveryRedirectType,PasswordRecoveryEmailRedirectPage,PasswordRecoveryEmailTemplate,PasswordRecoveryEmailFrom, PasswordRecoveryEmailSubject,ErrorEmptyField,LoginSuccessRedirectToPage,MatchAnonymousOrdersOnEmail,DoUpdateUsersByEmail,RequireUniqueEmails, ConfirmationEmailFromName,NotificationEmailFromName,UserNotificationRedirectType,UserNotificationRedirectPage,UserNotificationEmailTemplate,UserNotificationEmailFromAddress,UserNotificationEmailFromName,UserNotificationEmailSubject,ErrorWrongCountryCode,UseEmailForUserName,CreateProfileEmailAllowedActivity,EditProfileEmailAllowedActivity,SetProfile" />
 
 <dw:GroupBox ID="GroupBox1" runat="server" Title="Show" DoTranslation="true">
     <table class="formsTable">
@@ -704,10 +734,28 @@
         <table class="formsTable">
             <tr>
                 <td>
-                    <dw:TranslateLabel runat="server" Text="Template" />
+                    <dw:TranslateLabel runat="server" Text="On notification, redirect to" />
                 </td>
                 <td>
-                    <dw:FileManager runat="server" ID="NotificationEmailTemplate" Name="NotificationEmailTemplate" Folder="Templates/UserManagement/CreateProfile" />
+                    <div class="radio">
+                        <input type="radio" runat="server" name="NotificationRedirectType" id="NotificationRedirectTypePage" onclick="javascript:toggleNotificationRedirect();" />
+                        <label for="NotificationRedirectTypePage">
+                            <dw:TranslateLabel runat="server" Text="Page" />
+                        </label>
+                    </div>
+                    <div class="radio">
+                        <input type="radio" runat="server" name="NotificationRedirectType" id="NotificationRedirectTypeTemplate" onclick="javascript:toggleNotificationRedirect();" />
+                        <label for="NotificationRedirectTypeTemplate">
+                            <dw:TranslateLabel runat="server" Text="Template" />
+                        </label>
+                    </div>
+
+                    <div id="NotificationRedirectPageDiv">
+                        <dw:LinkManager runat="server" ID="NotificationRedirectPage" DisableFileArchive="true" DisableParagraphSelector="true" />
+                    </div>
+                    <div id="NotificationRedirectTemplateDiv">                        
+                        <dw:FileManager runat="server" ID="NotificationEmailTemplate" Name="NotificationEmailTemplate" Folder="Templates/UserManagement/CreateProfile" />
+                    </div>
                 </td>
             </tr>
             <tr>
@@ -747,10 +795,28 @@
         <table class="formsTable">
             <tr>
                 <td>
-                    <dw:TranslateLabel runat="server" Text="Template" />
+                    <dw:TranslateLabel runat="server" Text="On user notification, redirect to" />
                 </td>
-                <td>
-                    <dw:FileManager runat="server" ID="UserNotificationEmailTemplate" Name="UserNotificationEmailTemplate" Folder="Templates/UserManagement/CreateProfile" />
+                <td>                    
+                    <div class="radio">
+                        <input type="radio" runat="server" name="UserNotificationRedirectType" id="UserNotificationRedirectTypePage" onclick="javascript:toggleUserNotificationRedirect();" />
+                        <label for="UserNotificationRedirectTypePage">
+                            <dw:TranslateLabel runat="server" Text="Page" />
+                        </label>
+                    </div>
+                    <div class="radio">
+                        <input type="radio" runat="server" name="UserNotificationRedirectType" id="UserNotificationRedirectTypeTemplate" onclick="javascript:toggleUserNotificationRedirect();" />
+                        <label for="UserNotificationRedirectTypeTemplate">
+                            <dw:TranslateLabel runat="server" Text="Template" />
+                        </label>
+                    </div>
+
+                    <div id="UserNotificationRedirectPageDiv">
+                        <dw:LinkManager runat="server" ID="UserNotificationRedirectPage" DisableFileArchive="true" DisableParagraphSelector="true" />
+                    </div>
+                    <div id="UserNotificationRedirectTemplateDiv">                        
+                        <dw:FileManager runat="server" ID="UserNotificationEmailTemplate" Name="UserNotificationEmailTemplate" Folder="Templates/UserManagement/CreateProfile" />
+                    </div>
                 </td>
             </tr>
             <tr>
@@ -1014,7 +1080,29 @@
     </dw:GroupBox>
 
     <dw:GroupBox runat="server" Title="Email settings">
-        <dw:FileManager Label="Template" runat="server" ID="PasswordRecoveryEmailTemplate" Name="PasswordRecoveryEmailTemplate" Folder="Templates/UserManagement/Login" />
+        <div class="form-group">
+            <label class="control-label">Redirect to</label>
+            <div class="radio">
+                <input type="radio" runat="server" name="PasswordRecoveryRedirectType" id="PasswordRecoveryRedirectTypePage" onclick="javascript:togglePasswordRecoveryRedirect();" />
+                <label for="PasswordRecoveryRedirectTypePage">
+                    <dw:TranslateLabel runat="server" Text="Page" />
+                </label>
+            </div>
+            <label class="control-label">&nbsp</label>
+            <div class="radio">
+                <input type="radio" runat="server" name="PasswordRecoveryRedirectType" id="PasswordRecoveryRedirectTypeTemplate" onclick="javascript:togglePasswordRecoveryRedirect();" />
+                <label for="PasswordRecoveryRedirectTypeTemplate">
+                    <dw:TranslateLabel runat="server" Text="Template" />
+                </label>
+            </div>
+            <div id="PasswordRecoveryEmailRedirectPageDiv" class="form-group">
+                <label class="control-label">&nbsp</label>
+                <dw:LinkManager runat="server" ID="PasswordRecoveryEmailRedirectPage" DisableFileArchive="true" DisableParagraphSelector="true" />
+            </div>
+            <div id="PasswordRecoveryRedirectTemplateDiv">                   
+                <dw:FileManager Label="&nbsp" runat="server" ID="PasswordRecoveryEmailTemplate" Name="PasswordRecoveryEmailTemplate" Folder="Templates/UserManagement/Login" />
+            </div>
+        </div>
         <dwc:InputText runat="server" ID="PasswordRecoveryEmailFrom" Label="From address" />
         <dwc:InputText runat="server" ID="PasswordRecoveryEmailSubject" Label="Subject" />
     </dw:GroupBox>
@@ -1234,9 +1322,12 @@
     toggleIncludeSubsDiv();
     toggleShow();
     toggleCreateProfileRedirect();
+    toggleUserNotificationRedirect();
     toggleAutoLogin();
     UpdateSortLabel();
     toggleProfileUserMode();
+    togglePasswordRecoveryRedirect();
+    toggleNotificationRedirect();
 
     initPasswordRecoverPane();
 </script>

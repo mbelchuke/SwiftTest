@@ -1590,6 +1590,14 @@ function copyGridRowHere() {
     Action.Execute(copyActionParams);
 }
 
+function gridPermissions() {
+    var gridRowId = ContextMenu.callingID.split("_")[2];
+    
+    var path = "/Admin/Content/Permissions/PermissionEdit.aspx?Name=Gridrow&Subname=VirtualNode&Key=" + gridRowId;
+    copyActionParams.Url = path;
+    Action.Execute(copyActionParams);
+}
+
 function showRowTemplateSettingsDialog() {
     var stringArray = ContextMenu.callingID.split("_");
     var gridRowId = stringArray[2];

@@ -161,6 +161,7 @@
                                 <dw:EditableListColumnUserEditor ID="UserID_CustomSelector" runat="server" />
         	                </div>
                         </div>
+                        <dwc:CheckBox runat="server" ID="IncludeVariantInfoOnVariants" Name="IncludeVariantInfoOnVariants" Label="Include VariantInfo on Variants"></dwc:CheckBox>
                     </dw:GroupBox>
 
                     <dw:GroupBox runat="server" Title="Format" DoTranslation="True">

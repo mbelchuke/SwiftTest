@@ -550,7 +550,7 @@
                         </td>
                         <td>
                             <div id="imageContainer">
-                                <dw:FileManager runat="server" ID="ItemImage" Folder="/images" Extensions="jpg,jpeg,bmp,gif,png,webp" Name="ItemImage" />   
+                                <dw:FileManager runat="server" ID="ItemImage" Folder="/images" Extensions="jpg,jpeg,bmp,gif,png,webp,tif,tiff" Name="ItemImage" />   
                             </div>                           
                         </td>                      
                     </tr>

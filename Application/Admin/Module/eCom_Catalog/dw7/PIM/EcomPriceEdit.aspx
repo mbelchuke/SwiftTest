@@ -89,7 +89,7 @@
                     <dw:DateSelector runat="server" ID="ValidFrom" IncludeTime="false" AllowEmpty="true" Label="Valid From" all />
                     <dw:DateSelector runat="server" ID="ValidTo" IncludeTime="false" AllowEmpty="true" Label="Valid To" />
                     <dwc:SelectPicker ID="Publication" runat="server" Label="Campaign" />
-                    <dwc:SelectPicker ID="Unit" runat="server" Label="Unit" />
+                    <dwc:SelectPicker ID="Unit" runat="server" Label="Stock unit" />
                     <dwc:SelectPicker ID="StockLocation" runat="server" Label="Stock location" />
                     <dwc:SelectPicker ID="Language" runat="server" Label="Language" />
                     <dwc:SelectPicker ID="CountryCode" runat="server" Label="Country" />

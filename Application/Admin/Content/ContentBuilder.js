@@ -1,9 +1,11 @@
-var __spreadArrays = (this && this.__spreadArrays) || function () {
-    for (var s = 0, i = 0, il = arguments.length; i < il; i++) s += arguments[i].length;
-    for (var r = Array(s), k = 0, i = 0; i < il; i++)
-        for (var a = arguments[i], j = 0, jl = a.length; j < jl; j++, k++)
-            r[k] = a[j];
-    return r;
+var __spreadArray = (this && this.__spreadArray) || function (to, from, pack) {
+    if (pack || arguments.length === 2) for (var i = 0, l = from.length, ar; i < l; i++) {
+        if (ar || !(i in from)) {
+            if (!ar) ar = Array.prototype.slice.call(from, 0, i);
+            ar[i] = from[i];
+        }
+    }
+    return to.concat(ar || Array.prototype.slice.call(from));
 };
 var ContentBuilder;
 (function (ContentBuilder) {
@@ -18,6 +20,7 @@ var ContentBuilder;
                 return;
             }
             this.root = root;
+            this.areaId = parseInt(root.getAttribute("data-dw-grid-area-id"));
             this.pageId = parseInt(root.getAttribute("data-dw-grid-page-id"));
             this.container = root.getAttribute("data-dw-grid-container");
             if (this.isMissingRowDefinitions) {
@@ -41,7 +44,7 @@ var ContentBuilder;
                     columns: row.columns.map(function (col) { return col.paragraphId; })
                 };
             });
-            return fetch("/Admin/Content/GridRowEdit.aspx?PageID=" + this.pageId + "&cmd=sort", {
+            return fetch("/Admin/Content/GridRowEdit.aspx?PageID=".concat(this.pageId, "&cmd=sort"), {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json"
@@ -55,7 +58,7 @@ var ContentBuilder;
         ;
         Grid.prototype.createErrorContent = function () {
             var error = Helpers.elementFactory("div");
-            error.innerHTML = "<strong>No row definitions found for Grid ID '" + this.gridId + "'. Verify that the Grid configuration in your Layout template is valid.</strong>";
+            error.innerHTML = "<strong>No row definitions found for Grid ID '".concat(this.gridId, "'. Verify that the Grid configuration in your Layout template is valid.</strong>");
             this.root.parentNode.appendChild(error);
         };
         Grid.prototype.loadRows = function (rowElements, grid) {
@@ -67,7 +70,7 @@ var ContentBuilder;
             return rows;
         };
         Grid.prototype.createNewRowTarget = function (sortIndex) {
-            var markup = "\n                <dw-new-gridrow data-dw-gridrow=\"0\" data-dw-grid-container=\"" + this.container + "\" data-dw-grid-id=\"" + this.gridId + "\" style=\"display: none; height: 62px; position: relative; cursor: pointer; z-index: 1\">\n                    <img src=\"/Admin/Public/plus-white-circle.svg\" class=\"js-dw-gridrow-icon\" style=\"height: 42px; width: 42px; left: calc(50% - 21px); top: calc(50% - 21px); position: absolute; z-index: " + zIndexMaxValue + "\" />\n                    <div class=\"js-dw-gridrow-line\" style=\"position: absolute; border-top: 1px dashed #a8a8a8; width: 100%; top: calc(50% - 1px);\"></div>\n                </dw-new-gridrow>\n            ";
+            var markup = "\n                <dw-new-gridrow data-dw-gridrow=\"0\" data-dw-grid-container=\"".concat(this.container, "\" data-dw-grid-id=\"").concat(this.gridId, "\" style=\"display: none; height: 62px; position: relative; cursor: pointer; z-index: 1\">\n                    <img src=\"/Admin/Public/plus-white-circle.svg\" class=\"js-dw-gridrow-icon\" style=\"height: 42px; width: 42px; left: calc(50% - 21px); top: calc(50% - 21px); position: absolute; z-index: ").concat(zIndexMaxValue, "\" />\n                    <div class=\"js-dw-gridrow-line\" style=\"position: absolute; border-top: 1px dashed #a8a8a8; width: 100%; top: calc(50% - 1px);\"></div>\n                </dw-new-gridrow>\n            ");
             var newRow = Helpers.makeElement(markup);
             var gridRow = new GridRow(newRow, this, sortIndex);
             newRow.onclick = function () { return gridRow.editRow(); };
@@ -87,6 +90,7 @@ var ContentBuilder;
             this.hideForDesktops = rowElement.getAttribute("data-dw-gridrow-hide-desktop") === "true";
             this.hideForPhones = rowElement.getAttribute("data-dw-gridrow-hide-phone") === "true";
             this.hideForTablets = rowElement.getAttribute("data-dw-gridrow-hide-tablet") === "true";
+            this.hasPermissions = rowElement.getAttribute("data-dw-gridrow-has-permissions") === "true";
             this.grid = grid;
             this.sortIndex = sortIndex;
             this.isMissingDefinition = rowElement.hasAttribute("data-dw-gridrow-missing-definition");
@@ -142,7 +146,7 @@ var ContentBuilder;
                     Helpers.hideSpinner();
                     dialog.show("dlgEditGridRow");
                 };
-                frame.src = "GridRowEdit.aspx?PageId=" + this.grid.pageId + "&ID=" + id + "&SortIndex=" + position + "&Container=" + this.grid.container + "&GridId=" + this.grid.gridId + "&VisualEditor=true";
+                frame.src = "GridRowEdit.aspx?PageId=".concat(this.grid.pageId, "&ID=").concat(id, "&SortIndex=").concat(position, "&Container=").concat(this.grid.container, "&GridId=").concat(this.grid.gridId, "&VisualEditor=true");
             }
             else {
                 state.toolbar.showNewRow();
@@ -163,15 +167,15 @@ var ContentBuilder;
                 Helpers.hideSpinner();
                 dialog.show("dlgSaveAsTemplate");
             };
-            frame.src = "GridRowTemplateEdit.aspx?PageId=" + this.grid.pageId + "&ID=" + this.id;
+            frame.src = "GridRowTemplateEdit.aspx?PageId=".concat(this.grid.pageId, "&ID=").concat(this.id);
         };
         ;
         GridRow.prototype.deleteRow = function () {
             var _this = this;
-            if (!confirm("Are you sure you want to delete the row with id '" + this.id + "'? This will unlink all column content from the row but not delete them."))
+            if (!confirm("Are you sure you want to delete the row with id '".concat(this.id, "'? This will unlink all column content from the row but not delete them.")))
                 return;
             Helpers.showSpinner();
-            var url = "GridRowEdit.aspx?PageId=" + this.grid.pageId + "&ID=" + this.id + "&cmd=delete";
+            var url = "GridRowEdit.aspx?PageId=".concat(this.grid.pageId, "&ID=").concat(this.id, "&cmd=delete");
             fetch(url).then(function (resp) {
                 if (resp.ok) {
                     Helpers.hideSpinner();
@@ -182,6 +186,33 @@ var ContentBuilder;
             });
         };
         ;
+        GridRow.prototype.copyRowHere = function () {
+            var _this = this;
+            Helpers.showSpinner();
+            var url = "Dialogs/CopyGridRowToPage?area=".concat(this.grid.areaId, "&copyId=").concat(this.id, "&pageId=").concat(this.grid.pageId);
+            fetch(url).then(function (resp) {
+                if (resp.ok) {
+                    Helpers.hideSpinner();
+                    Helpers.reloadEditor();
+                }
+            }).catch(function (reason) {
+                Helpers.log("Unable to copy row", _this.id, reason);
+            });
+        };
+        ;
+        GridRow.prototype.permissionRow = function () {
+            var url = "/Admin/Content/Permissions/PermissionEdit.aspx?Name=Gridrow&Subname=VirtualNode&Key=".concat(this.id);
+            var dlgAction = {
+                Url: url,
+                Name: "OpenDialog",
+                OnSubmitted: {
+                    Name: "ScriptFunction",
+                    Function: Helpers.reloadEditor
+                }
+            };
+            Action.Execute(dlgAction);
+        };
+        ;
         GridRow.prototype.replaceColumn = function (existingColumn, newColumn) {
             var existingIndex = this.columns.indexOf(existingColumn);
             this.columns[existingIndex] = newColumn;
@@ -190,7 +221,7 @@ var ContentBuilder;
         ;
         GridRow.prototype.createNewRow = function (definitionId, isTemplate, sortIndex) {
             Helpers.showSpinner();
-            fetch("GridRowEdit.aspx?PageId=" + this.grid.pageId + "&cmd=create", {
+            fetch("GridRowEdit.aspx?PageId=".concat(this.grid.pageId, "&cmd=create"), {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json"
@@ -207,7 +238,7 @@ var ContentBuilder;
                     return resp.text();
                 }
                 else {
-                    return Promise.reject(resp.status + ": " + resp.statusText);
+                    return Promise.reject("".concat(resp.status, ": ").concat(resp.statusText));
                 }
             }).catch(function (reason) {
                 Helpers.log("Unable to create new row", reason);
@@ -218,7 +249,7 @@ var ContentBuilder;
         };
         GridRow.prototype.createErrorContent = function (definitionId) {
             var error = Helpers.elementFactory("div");
-            error.innerHTML = "<strong>Row definition '" + definitionId + "' for row '" + this.id + "' not found for Grid ID '" + this.grid.gridId + "'. Verify that your RowDefinitions.json file contains the definition ID.</strong>";
+            error.innerHTML = "<strong>Row definition '".concat(definitionId, "' for row '").concat(this.id, "' not found for Grid ID '").concat(this.grid.gridId, "'. Verify that your RowDefinitions.json file contains the definition ID.</strong>");
             this.element.appendChild(error);
         };
         GridRow.prototype.setupPlaceholder = function () {
@@ -338,7 +369,7 @@ var ContentBuilder;
                                 Helpers.hideSpinner();
                             }
                             else {
-                                return Promise.reject("Unable to save new row order. Reason: " + resp.status + " - " + resp.statusText);
+                                return Promise.reject("Unable to save new row order. Reason: ".concat(resp.status, " - ").concat(resp.statusText));
                             }
                         }).catch(function (reason) {
                             Helpers.error(reason);
@@ -430,12 +461,12 @@ var ContentBuilder;
                     var doc = frame_1.contentWindow.document;
                     var hasModuleButton = doc.getElementById('cmdViewModule');
                     document.getElementById('Toolbar').style.display = hasModuleButton ? 'block' : 'none';
-                    var dialogTitle = Helpers.getTranslation("Edit") + " " + _this.paragraphName;
+                    var dialogTitle = "".concat(Helpers.getTranslation("Edit"), " ").concat(_this.paragraphName);
                     dialog.setTitle("dlgEditParagraph", dialogTitle);
                     dialog.show("dlgEditParagraph");
                     Helpers.hideSpinner();
                 };
-                frame_1.src = "ParagraphEdit.aspx?ID=" + this.paragraphId + "&PageId=" + this.row.grid.pageId + "&Row=" + this.row.id + "&Column=" + this.columnPosition + "&VisualEditor=true";
+                frame_1.src = "ParagraphEdit.aspx?ID=".concat(this.paragraphId, "&PageId=").concat(this.row.grid.pageId, "&Row=").concat(this.row.id, "&Column=").concat(this.columnPosition, "&VisualEditor=true");
             }
             else {
                 state.toolbar.showNewColumn();
@@ -449,15 +480,15 @@ var ContentBuilder;
                 Helpers.hideSpinner();
                 dialog.show("dlgSaveColumnAsTemplate");
             };
-            frame.src = "GridColumnTemplateEdit.aspx?ID=" + this.paragraphId;
+            frame.src = "GridColumnTemplateEdit.aspx?ID=".concat(this.paragraphId);
         };
         ;
         GridColumn.prototype.deleteColumn = function () {
             var _this = this;
-            if (!confirm("Are you sure you want to delete the column/paragraph with name: '" + this.paragraphName + "' and ID: '" + this.paragraphId + "'?"))
+            if (!confirm("Are you sure you want to delete the column/paragraph with name: '".concat(this.paragraphName, "' and ID: '").concat(this.paragraphId, "'?")))
                 return;
             Helpers.showSpinner();
-            var url = "/Admin/Content/Paragraph/Paragraph_Delete.aspx?mode=viewparagraphs&ID=" + this.paragraphId + "&PageID=" + this.row.grid.pageId;
+            var url = "/Admin/Content/Paragraph/Paragraph_Delete.aspx?mode=viewparagraphs&ID=".concat(this.paragraphId, "&PageID=").concat(this.row.grid.pageId);
             fetch(url).then(function (resp) {
                 if (resp.ok) {
                     Helpers.reloadEditor();
@@ -471,7 +502,7 @@ var ContentBuilder;
         GridColumn.prototype.linkContent = function () {
             var _this = this;
             Helpers.showSpinner();
-            var url = "ContentBuilder.aspx?cmd=ListParagraphs&ID=" + this.row.grid.pageId;
+            var url = "ContentBuilder.aspx?cmd=ListParagraphs&ID=".concat(this.row.grid.pageId);
             fetch(url).then(function (resp) {
                 if (resp.ok) {
                     return resp.json();
@@ -487,12 +518,12 @@ var ContentBuilder;
                 if (paragraphs.length > 0) {
                     var fragment = document.createDocumentFragment();
                     var _loop_1 = function (paragraph) {
-                        var markup = "\n                            <div data-paragraph-id=\"" + paragraph.Id + "\" class=\"paragraph-type\">\n                                <span class=\"large-icon\">" + paragraph.Icon + "</span>\n                                <div>" + paragraph.Name + "</div>\n                                <div class=\"description\">\n                                    <small>" + paragraph.Timestamp + "</small>\n                                </div>\n                            </div>\n                        ";
+                        var markup = "\n                            <div data-paragraph-id=\"".concat(paragraph.Id, "\" class=\"paragraph-type\">\n                                <span class=\"large-icon\">").concat(paragraph.Icon, "</span>\n                                <div>").concat(paragraph.Name, "</div>\n                                <div class=\"description\">\n                                    <small>").concat(paragraph.Timestamp, "</small>\n                                </div>\n                            </div>\n                        ");
                         var paragraphElement = Helpers.makeElement(markup);
                         paragraphElement.onclick = function () {
                             dialog.hide("dlgLinkParagraph");
                             Helpers.showSpinner();
-                            var url = "ContentBuilder.aspx?cmd=LinkParagraph&ParagraphId=" + paragraph.Id + "&RowId=" + _this.row.id + "&position=" + _this.columnPosition;
+                            var url = "ContentBuilder.aspx?cmd=LinkParagraph&ParagraphId=".concat(paragraph.Id, "&RowId=").concat(_this.row.id, "&position=").concat(_this.columnPosition);
                             fetch(url).then(function (resp) {
                                 if (resp.ok) {
                                     Helpers.reloadEditor();
@@ -513,7 +544,7 @@ var ContentBuilder;
                     existingParagraphContainer.appendChild(fragment);
                 }
                 else {
-                    var noParagraphsElement = Helpers.makeElement("<div class=\"description\">" + Helpers.getTranslation("No paragraps available") + "</div>");
+                    var noParagraphsElement = Helpers.makeElement("<div class=\"description\">".concat(Helpers.getTranslation("No paragraps available"), "</div>"));
                     existingParagraphContainer.appendChild(noParagraphsElement);
                 }
                 dialog.show("dlgLinkParagraph");
@@ -521,11 +552,11 @@ var ContentBuilder;
             }).catch(function (reason) { return Helpers.log("Unable to load paragraphs", reason); });
         };
         GridColumn.prototype.unlinkContent = function () {
-            if (!confirm("Are you sure you want to unlink the paragraph with name: '" + this.paragraphName + "' and ID: '" + this.paragraphId + "'?")) {
+            if (!confirm("Are you sure you want to unlink the paragraph with name: '".concat(this.paragraphName, "' and ID: '").concat(this.paragraphId, "'?"))) {
                 return;
             }
             Helpers.showSpinner();
-            var url = "ContentBuilder.aspx?cmd=UnlinkParagraph&ParagraphID=" + this.paragraphId;
+            var url = "ContentBuilder.aspx?cmd=UnlinkParagraph&ParagraphID=".concat(this.paragraphId);
             fetch(url).then(function (resp) {
                 if (resp.ok) {
                     Helpers.reloadEditor();
@@ -696,7 +727,7 @@ var ContentBuilder;
                             };
                             newColumnType_1.createColumn(frameWindow);
                         };
-                        frame_2.src = "ParagraphEdit.aspx?ID=" + _this.paragraphId + "&PageId=" + _this.row.grid.pageId + "&Row=" + _this.row.id + "&Column=" + _this.columnPosition + "&VisualEditor=true";
+                        frame_2.src = "ParagraphEdit.aspx?ID=".concat(_this.paragraphId, "&PageId=").concat(_this.row.grid.pageId, "&Row=").concat(_this.row.id, "&Column=").concat(_this.columnPosition, "&VisualEditor=true");
                     }
                     else {
                         var draggedColumn = state.dragging.source;
@@ -721,7 +752,7 @@ var ContentBuilder;
                             if (resp.ok)
                                 Helpers.reloadEditor();
                             else
-                                return Promise.reject("Unable to save new column order. Reason: " + resp.status + " - " + resp.statusText + ". Undoing changes...");
+                                return Promise.reject("Unable to save new column order. Reason: ".concat(resp.status, " - ").concat(resp.statusText, ". Undoing changes..."));
                         })
                             .catch(function (reason) { return Helpers.error(reason); })
                             .finally(function () { return Helpers.hideSpinner(); });
@@ -805,10 +836,10 @@ var ContentBuilder;
                 var xCenter = this.row.element.offsetLeft + width / 2;
                 var yOffset = state.contentFrame.contentWindow.pageYOffset;
                 var newTop = Helpers.correctTopInCaseOverlapping(this.row.element, xCenter, top - yOffset, height) + yOffset;
-                this.element.style.top = newTop + "px";
-                this.element.style.left = this.row.element.offsetLeft + "px";
-                this.element.style.width = width + "px";
-                this.element.style.height = height - (newTop - top) + "px";
+                this.element.style.top = "".concat(newTop, "px");
+                this.element.style.left = "".concat(this.row.element.offsetLeft, "px");
+                this.element.style.width = "".concat(width, "px");
+                this.element.style.height = "".concat(height - (newTop - top), "px");
             }
             this.toolbar.style.top = 0 <= top && top < 38 ? "0px" : "-38px";
         };
@@ -824,7 +855,7 @@ var ContentBuilder;
             var buttonsCount = 2;
             var toolbar = Helpers.elementFactory("dw-row-toolbar");
             toolbar.style.display = 'block';
-            toolbar.style.zIndex = "" + (zIndexMaxValue - 1); // Max value (minus 1) for z-index in modern browsers - to make sure the overlay floats to the top.
+            toolbar.style.zIndex = "".concat(zIndexMaxValue - 1); // Max value (minus 1) for z-index in modern browsers - to make sure the overlay floats to the top.
             toolbar.style.height = '40px';
             toolbar.style.position = 'absolute';
             toolbar.style.top = '-38px';
@@ -836,6 +867,9 @@ var ContentBuilder;
             var editRowButtonTitle = Helpers.getTranslation("Edit row");
             var editRowButton = Helpers.createButton("<img src='/Admin/Public/pen.svg' style='height: 28px; width: 22px; display: table'>", editRowButtonTitle, function () { return _this.row.editRow(); });
             toolbar.appendChild(editRowButton);
+            var copyRowHereButtonTitle = Helpers.getTranslation("Copy row here");
+            var copyRowHereButton = Helpers.createButton("<img src='/Admin/Public/copy.svg' style='height: 28px; width: 28px; display: table; transform: scale(0.8);'>", copyRowHereButtonTitle, function () { return _this.row.copyRowHere(); });
+            toolbar.appendChild(copyRowHereButton);
             if (this.row.hasPublicationPeriod) {
                 var publicationIconTitle = Helpers.getTranslation("Publication period");
                 var publicationIcon = Helpers.createToolbarIcon("<div style='height: 28px; width: 12px'><img src='/Admin/Public/PublicationPeriod.svg' style='position: relative;top: 50%;transform: translateY(-50%);display: table;max-width: 100%;'></div>", publicationIconTitle);
@@ -865,6 +899,10 @@ var ContentBuilder;
             var deleteRowButtonTitle = Helpers.getTranslation("Delete row");
             var deleteRowButton = Helpers.createButton("<img src='/Admin/Public/trash-alt.svg' style='height: 28px; width: 28px; display: table'>", deleteRowButtonTitle, function () { return _this.row.deleteRow(); });
             toolbar.appendChild(deleteRowButton);
+            var permissionRowButtonTitle = Helpers.getTranslation("Permissions");
+            var imageLink = this.row.hasPermissions ? "/Admin/Public/lock_white_24dp.svg" : "/Admin/Public/lock_open_white_24dp.svg";
+            var permissionRowButton = Helpers.createButton("<img src='".concat(imageLink, "' style='height: 28px; width: 22px; display: table'>"), permissionRowButtonTitle, function () { return _this.row.permissionRow(); });
+            toolbar.appendChild(permissionRowButton);
             toolbar.style.left = 'calc(50% - ' + (buttonsCount * 36) / 2 + 'px)';
             return toolbar;
         };
@@ -878,7 +916,7 @@ var ContentBuilder;
             overlay.style.pointerEvents = "none";
             overlay.style.width = "100%";
             overlay.style.height = "100%";
-            overlay.style.zIndex = "" + (zIndexMaxValue - 2); // Max value (minus 2) for z-index in modern browsers - to make sure the overlay floats to the top.
+            overlay.style.zIndex = "".concat(zIndexMaxValue - 2); // Max value (minus 2) for z-index in modern browsers - to make sure the overlay floats to the top.
             overlay.draggable = false;
             if (toolbar) {
                 overlay.appendChild(toolbar);
@@ -930,18 +968,18 @@ var ContentBuilder;
                 var xCenter = left + box.width / 2;
                 boxTop = Helpers.correctTopInCaseOverlapping(this.column.trigger, xCenter, boxTop, box.height);
             }
-            this.element.style.top = boxTop + pageYOffset + margin + "px";
-            this.element.style.left = left + margin + "px";
-            this.element.style.width = box.width - margin * 2 + "px";
-            this.element.style.height = box.bottom - boxTop - margin * 2 + "px";
+            this.element.style.top = "".concat(boxTop + pageYOffset + margin, "px");
+            this.element.style.left = "".concat(left + margin, "px");
+            this.element.style.width = "".concat(box.width - margin * 2, "px");
+            this.element.style.height = "".concat(box.bottom - boxTop - margin * 2, "px");
             var rowBox = this.column.row.element.getBoundingClientRect();
             var _b = [rowBox.top + pageYOffset, rowBox.height], top = _b[0], height = _b[1];
-            this.leftDropMarker.style.top = top + "px";
-            this.leftDropMarker.style.left = left + "px";
-            this.leftDropMarker.style.height = height + "px";
-            this.rightDropMarker.style.top = top + "px";
-            this.rightDropMarker.style.left = left + box.width - 1 + "px";
-            this.rightDropMarker.style.height = height + "px";
+            this.leftDropMarker.style.top = "".concat(top, "px");
+            this.leftDropMarker.style.left = "".concat(left, "px");
+            this.leftDropMarker.style.height = "".concat(height, "px");
+            this.rightDropMarker.style.top = "".concat(top, "px");
+            this.rightDropMarker.style.left = "".concat(left + box.width - 1, "px");
+            this.rightDropMarker.style.height = "".concat(height, "px");
         };
         ColumnOverlay.prototype.createDragHandle = function () {
             var dragHandleTitle = Helpers.getTranslation("Drag this");
@@ -954,7 +992,7 @@ var ContentBuilder;
             var _this = this;
             var toolbar = Helpers.elementFactory("dw-column-toolbar");
             toolbar.style.display = 'block';
-            toolbar.style.zIndex = "" + (zIndexMaxValue - 1); // Max value (minus 1) for z-index in modern browsers - to make sure the overlay floats to the top.
+            toolbar.style.zIndex = "".concat(zIndexMaxValue - 1); // Max value (minus 1) for z-index in modern browsers - to make sure the overlay floats to the top.
             toolbar.style.height = '40px';
             toolbar.style.position = 'absolute';
             toolbar.style.top = '-2px';
@@ -1004,7 +1042,7 @@ var ContentBuilder;
             overlay.style.display = 'none';
             overlay.style.position = 'absolute';
             overlay.style.pointerEvents = 'none';
-            overlay.style.zIndex = "" + (zIndexMaxValue - 2); // Max value (minus 2) for z-index in modern browsers - to make sure the overlay floats to the top.
+            overlay.style.zIndex = "".concat(zIndexMaxValue - 2); // Max value (minus 2) for z-index in modern browsers - to make sure the overlay floats to the top.
             if (toolbar) {
                 overlay.appendChild(toolbar);
             }
@@ -1081,7 +1119,7 @@ var ContentBuilder;
         };
         ContentBuilderToolbar.prototype.loadRows = function () {
             var _this = this;
-            var rows = fetch("ContentBuilder.aspx?ID=" + this.pageId + "&cmd=GetRowDefinitions").then(function (resp) {
+            var rows = fetch("ContentBuilder.aspx?ID=".concat(this.pageId, "&cmd=GetRowDefinitions")).then(function (resp) {
                 if (resp.ok) {
                     return resp.json();
                 }
@@ -1100,8 +1138,8 @@ var ContentBuilder;
                     isFirst = false;
                     var captureTargets = [];
                     var categoryWrapper = Helpers.makeElement("<div class=\"category-container\" style=\"display: none;\"></div>");
-                    var categoryHeader = Helpers.makeElement("<div class=\"category-header\"><i class=\"groupbox-icon-collapse fa " + (isCollapsed ? "fa-plus" : "fa-minus") + "\"></i>" + category + "</div>");
-                    var categoryContent = Helpers.makeElement("<div class=\"category-content " + (isCollapsed ? "collapsed" : "") + "\"></div>");
+                    var categoryHeader = Helpers.makeElement("<div class=\"category-header\"><i class=\"groupbox-icon-collapse fa ".concat(isCollapsed ? "fa-plus" : "fa-minus", "\"></i>").concat(category, "</div>"));
+                    var categoryContent = Helpers.makeElement("<div class=\"category-content ".concat(isCollapsed ? "collapsed" : "", "\"></div>"));
                     categoryWrapper.appendChild(categoryHeader);
                     categoryWrapper.appendChild(categoryContent);
                     categoryHeader.onclick = function () {
@@ -1111,15 +1149,15 @@ var ContentBuilder;
                         var markup = "";
                         if (d.Image && d.Image !== '') {
                             if (d.Image.includes(".svg")) {
-                                markup = "\n                                    <div class=\"toolbar-new-rowtype icon\">\n                                        <div class=\"definition-image\">\n                                            <img src=\"" + d.Image + "\" class=\"template-image\" title=\"" + d.Name + "\" />\n                                        </div>\n                                        <div class=\"definition\">\n                                            <div class=\"definition-name\">" + d.Name + "</div>\n                                            <div class=\"definition-description\">" + d.Description + "</div>\n                                        </div>\n                                    </div>\n                                ";
+                                markup = "\n                                    <div class=\"toolbar-new-rowtype icon\">\n                                        <div class=\"definition-image\">\n                                            <img src=\"".concat(d.Image, "\" class=\"template-image\" title=\"").concat(d.Name, "\" />\n                                        </div>\n                                        <div class=\"definition\">\n                                            <div class=\"definition-name\">").concat(d.Name, "</div>\n                                            <div class=\"definition-description\">").concat(d.Description, "</div>\n                                        </div>\n                                    </div>\n                                ");
                             }
                             else {
-                                markup = "\n                                    <div class=\"toolbar-new-rowtype image\">\n                                        <div class=\"definition-name\">" + d.Name + "</div>\n                                        <div class=\"definition-description\">" + d.Description + "</div>\n                                        <div class=\"definition-image\">\n                                            <img src=\"/Admin/Public/GetImage.ashx?width=410&amp;height=210&amp;crop=5&amp;compression=75&amp;image=" + d.Image + "\" class=\"template-image\" title=\"" + d.Name + "\" />\n                                        </div>\n                                    </div>\n                                ";
+                                markup = "\n                                    <div class=\"toolbar-new-rowtype image\">\n                                        <div class=\"definition-name\">".concat(d.Name, "</div>\n                                        <div class=\"definition-description\">").concat(d.Description, "</div>\n                                        <div class=\"definition-image\">\n                                            <img src=\"/Admin/Public/GetImage.ashx?width=410&amp;height=210&amp;crop=5&amp;compression=75&amp;image=").concat(d.Image, "\" class=\"template-image\" title=\"").concat(d.Name, "\" />\n                                        </div>\n                                    </div>\n                                ");
                             }
                         }
                         else {
-                            var rowDefinitionId = d.CaptureTarget ? "id=\"rowImage" + d.CaptureTarget.ID + "\"" : "";
-                            markup = "\n                                <div class=\"toolbar-new-rowtype image\">\n                                    <div class=\"definition-name\">" + d.Name + "</div>\n                                    <div class=\"definition-description\">" + d.Description + "</div>\n                                    <div class=\"definition-image hidden\" " + rowDefinitionId + ">\n                                        <img src=\"\" class=\"template-image\" title=\"" + d.Name + "\" />\n                                    </div>\n                                </div>\n                            ";
+                            var rowDefinitionId = d.CaptureTarget ? "id=\"rowImage".concat(d.CaptureTarget.ID, "\"") : "";
+                            markup = "\n                                <div class=\"toolbar-new-rowtype image\">\n                                    <div class=\"definition-name\">".concat(d.Name, "</div>\n                                    <div class=\"definition-description\">").concat(d.Description, "</div>\n                                    <div class=\"definition-image hidden\" ").concat(rowDefinitionId, ">\n                                        <img src=\"\" class=\"template-image\" title=\"").concat(d.Name, "\" />\n                                    </div>\n                                </div>\n                            ");
                             if (d.CaptureTarget) {
                                 captureTargets.push(d.CaptureTarget);
                             }
@@ -1142,14 +1180,14 @@ var ContentBuilder;
                     var updateCallback = function (targetInfo) {
                         targetInfo.Targets.forEach(function (captureTarget) {
                             if (captureTarget.ImagePath) {
-                                var rowImage_1 = document.getElementById("rowImage" + captureTarget.ID);
+                                var rowImage_1 = document.getElementById("rowImage".concat(captureTarget.ID));
                                 if (rowImage_1) {
                                     setTimeout(function () {
                                         var imgElement = rowImage_1.querySelector('img');
                                         imgElement.onload = function () {
                                             rowImage_1.classList.toggle('hidden');
                                         };
-                                        imgElement.src = "/Admin/Public/GetImage.ashx?width=410&height=210&crop=5&compression=75&image=" + captureTarget.ImagePath;
+                                        imgElement.src = "/Admin/Public/GetImage.ashx?width=410&height=210&crop=5&compression=75&image=".concat(captureTarget.ImagePath);
                                     }, 100);
                                 }
                             }
@@ -1162,7 +1200,7 @@ var ContentBuilder;
         };
         ContentBuilderToolbar.prototype.loadColumns = function () {
             var _this = this;
-            var columns = fetch("ContentBuilder.aspx?ID=" + this.pageId + "&cmd=GetColumnDefinitions").then(function (resp) {
+            var columns = fetch("ContentBuilder.aspx?ID=".concat(this.pageId, "&cmd=GetColumnDefinitions")).then(function (resp) {
                 if (resp.ok) {
                     return resp.json();
                 }
@@ -1181,8 +1219,8 @@ var ContentBuilder;
                     isFirst = false;
                     var captureTargets = [];
                     var categoryWrapper = Helpers.makeElement("<div class=\"category-container\" style=\"display: none;\"></div>");
-                    var categoryHeader = Helpers.makeElement("<div class=\"category-header\"><i class=\"groupbox-icon-collapse fa " + (isCollapsed ? "fa-plus" : "fa-minus") + "\"></i>" + category + "</div>");
-                    var categoryContent = Helpers.makeElement("<div class=\"category-content " + (isCollapsed ? "collapsed" : "") + "\"></div>");
+                    var categoryHeader = Helpers.makeElement("<div class=\"category-header\"><i class=\"groupbox-icon-collapse fa ".concat(isCollapsed ? "fa-plus" : "fa-minus", "\"></i>").concat(category, "</div>"));
+                    var categoryContent = Helpers.makeElement("<div class=\"category-content ".concat(isCollapsed ? "collapsed" : "", "\"></div>"));
                     categoryWrapper.appendChild(categoryHeader);
                     categoryWrapper.appendChild(categoryContent);
                     categoryHeader.onclick = function () {
@@ -1191,11 +1229,11 @@ var ContentBuilder;
                     definitions.forEach(function (d) {
                         var markup = "";
                         if (d.Image && d.Image !== '') {
-                            markup = "\n                                <div class=\"paragraph-type image\">\n                                    <div class=\"definition\">\n                                        <div class=\"definition-name\">" + d.Name + "</div>\n                                        <div class=\"definition-description\">" + d.Description + "</div>\n                                    </div>\n                                    <div class=\"definition-image\">\n                                        <img src=\"/Admin/Public/GetImage.ashx?width=410&amp;height=210&amp;crop=5&amp;compression=75&amp;image=" + d.Image + "\" class=\"template-image\" title=\"" + d.Name + "\" />\n                                    </div>\n                                </div>\n                            ";
+                            markup = "\n                                <div class=\"paragraph-type image\">\n                                    <div class=\"definition\">\n                                        <div class=\"definition-name\">".concat(d.Name, "</div>\n                                        <div class=\"definition-description\">").concat(d.Description, "</div>\n                                    </div>\n                                    <div class=\"definition-image\">\n                                        <img src=\"/Admin/Public/GetImage.ashx?width=410&amp;height=210&amp;crop=5&amp;compression=75&amp;image=").concat(d.Image, "\" class=\"template-image\" title=\"").concat(d.Name, "\" />\n                                    </div>\n                                </div>\n                            ");
                         }
                         else {
-                            var paragraphDefinitionId = d.CaptureTarget ? "id=\"paragraphDefinition" + d.CaptureTarget.ID + "\"" : "";
-                            markup = "\n                                <div class=\"paragraph-type icon\" " + paragraphDefinitionId + ">\n                                    <div class=\"definition\">\n                                        <div class=\"definition-name\">" + d.Name + "</div>\n                                        <div class=\"definition-description\">" + d.Description + "</div>\n                                    </div>\n                                    <div class=\"definition-image\">\n                                        <span class=\"large-icon\">" + d.Icon + "</span>\n                                    </div>\n                                </div>\n                            ";
+                            var paragraphDefinitionId = d.CaptureTarget ? "id=\"paragraphDefinition".concat(d.CaptureTarget.ID, "\"") : "";
+                            markup = "\n                                <div class=\"paragraph-type icon\" ".concat(paragraphDefinitionId, ">\n                                    <div class=\"definition\">\n                                        <div class=\"definition-name\">").concat(d.Name, "</div>\n                                        <div class=\"definition-description\">").concat(d.Description, "</div>\n                                    </div>\n                                    <div class=\"definition-image\">\n                                        <span class=\"large-icon\">").concat(d.Icon, "</span>\n                                    </div>\n                                </div>\n                            ");
                             if (d.CaptureTarget) {
                                 captureTargets.push(d.CaptureTarget);
                             }
@@ -1218,7 +1256,7 @@ var ContentBuilder;
                     var updateCallback = function (targetInfo) {
                         targetInfo.Targets.forEach(function (captureTarget) {
                             if (captureTarget.ImagePath) {
-                                var colImage_1 = document.getElementById("paragraphDefinition" + captureTarget.ID);
+                                var colImage_1 = document.getElementById("paragraphDefinition".concat(captureTarget.ID));
                                 if (colImage_1) {
                                     setTimeout(function () {
                                         var imgContainer = colImage_1.querySelector('.definition-image');
@@ -1229,7 +1267,7 @@ var ContentBuilder;
                                             colImage_1.classList.remove('icon');
                                             colImage_1.classList.add('image');
                                         };
-                                        imgElement.src = "/Admin/Public/GetImage.ashx?width=410&height=210&crop=5&compression=75&image=" + captureTarget.ImagePath;
+                                        imgElement.src = "/Admin/Public/GetImage.ashx?width=410&height=210&crop=5&compression=75&image=".concat(captureTarget.ImagePath);
                                     }, 100);
                                 }
                             }
@@ -1283,7 +1321,7 @@ var ContentBuilder;
             this.type = NewRowType.type;
             this.definitionId = definition.Id;
             this.isTemplate = definition.IsTemplate;
-            this.contentText = (definition.Description + " " + definition.Image + " " + definition.Name).toLowerCase();
+            this.contentText = "".concat(definition.Description, " ").concat(definition.Image, " ").concat(definition.Name).toLowerCase();
             this.setupDragAndDrop();
         }
         NewRowType.prototype.setupDragAndDrop = function () {
@@ -1325,7 +1363,7 @@ var ContentBuilder;
             this.type = NewColumnType.type;
             this.creationType = definition.IsTemplate ? "template" : definition.IsItemBased ? "item" : "new";
             this.creationArgument = definition.IsTemplate ? parseInt(definition.Id) : definition.Id;
-            this.contentText = (definition.Description + " " + definition.Image + " " + definition.Name).toLowerCase();
+            this.contentText = "".concat(definition.Description, " ").concat(definition.Image, " ").concat(definition.Name).toLowerCase();
             this.setupDragAndDrop();
         }
         NewColumnType.prototype.createColumn = function (window) {
@@ -1470,21 +1508,21 @@ var ContentBuilder;
             for (var _i = 0; _i < arguments.length; _i++) {
                 args[_i] = arguments[_i];
             }
-            return Helpers.outputMessage.apply(Helpers, __spreadArrays(["log"], args));
+            return Helpers.outputMessage.apply(Helpers, __spreadArray(["log"], args, false));
         };
         Helpers.warn = function () {
             var args = [];
             for (var _i = 0; _i < arguments.length; _i++) {
                 args[_i] = arguments[_i];
             }
-            return Helpers.outputMessage.apply(Helpers, __spreadArrays(["warn"], args));
+            return Helpers.outputMessage.apply(Helpers, __spreadArray(["warn"], args, false));
         };
         Helpers.error = function () {
             var args = [];
             for (var _i = 0; _i < arguments.length; _i++) {
                 args[_i] = arguments[_i];
             }
-            return Helpers.outputMessage.apply(Helpers, __spreadArrays(["error"], args));
+            return Helpers.outputMessage.apply(Helpers, __spreadArray(["error"], args, false));
         };
         Helpers.outputMessage = function (outputType) {
             var args = [];
@@ -1493,7 +1531,7 @@ var ContentBuilder;
             }
             if (state.debug) {
                 var date = new Date();
-                console[outputType].apply(console, __spreadArrays([date.toLocaleDateString() + ":" + date.toLocaleTimeString() + " - "], args));
+                console[outputType].apply(console, __spreadArray(["".concat(date.toLocaleDateString(), ":").concat(date.toLocaleTimeString(), " - ")], args, false));
             }
         };
         Helpers.correctTopInCaseOverlapping = function (elm, xPos, yPos, height) {
@@ -1580,7 +1618,7 @@ var ContentBuilder;
             }
             hideOverlay("wait");
         });
-        var contentUrl = "/Default.aspx?ID=" + pageId + "&visualedit=true";
+        var contentUrl = "/Default.aspx?ID=".concat(pageId, "&visualedit=true");
         contentFrame.src = contentUrl;
         state.contentFrame = contentFrame;
     }
@@ -1591,10 +1629,10 @@ var ContentBuilder;
             var location = new URL(contentFrame.contentDocument.location.href);
             if (location.searchParams.has("devicetype")) {
                 var deviceType = location.searchParams.get("devicetype");
-                contentFrame.src = "/Default.aspx?ID=" + model.Selected + "&visualedit=true&devicetype=" + deviceType;
+                contentFrame.src = "/Default.aspx?ID=".concat(model.Selected, "&visualedit=true&devicetype=").concat(deviceType);
             }
             else {
-                contentFrame.src = "/Default.aspx?ID=" + model.Selected + "&visualedit=true";
+                contentFrame.src = "/Default.aspx?ID=".concat(model.Selected, "&visualedit=true");
             }
         };
         var dlgAction = createLinkDialog(linkDialogTypes.page, ['TypesPermittedForChoosing=' + linkDialogPageTypeAllowed], callback);
@@ -1613,15 +1651,15 @@ var ContentBuilder;
         var container = document.querySelector("#content-container");
         var contentFrame = document.querySelector("iframe.view-port");
         var rotateButton = document.querySelector("a.rotate-preview-btn");
-        contentFrame.src = location + "&devicetype=" + deviceType;
+        contentFrame.src = "".concat(location, "&devicetype=").concat(deviceType);
         if (width > 0 && height > 0) {
             if (container.classList.contains('preview--rotate')) {
-                contentFrame.style.width = height + "px";
-                contentFrame.style.height = width + "px";
+                contentFrame.style.width = "".concat(height, "px");
+                contentFrame.style.height = "".concat(width, "px");
             }
             else {
-                contentFrame.style.width = width + "px";
-                contentFrame.style.height = height + "px";
+                contentFrame.style.width = "".concat(width, "px");
+                contentFrame.style.height = "".concat(height, "px");
             }
             container.classList.add("preview--mobile");
             rotateButton.classList.add("preview--mobile");
@@ -1648,7 +1686,7 @@ var ContentBuilder;
         var location = new URL(state.contentFrame.contentDocument.location.href);
         location.searchParams.delete("visualedit");
         location.searchParams.delete("devicetype");
-        var showUrl = "" + location;
+        var showUrl = "".concat(location);
         window.open(showUrl, "_blank");
     }
     ContentBuilder.showPage = showPage;
@@ -1678,7 +1716,7 @@ var ContentBuilder;
             Helpers.reloadEditor();
             Helpers.hideSpinner();
         };
-        var success = frameWindow.Save(); // Will return false on validation error and undefined in all other cases
+        var success = frameWindow.Save(true, 'VisualEditor'); // Will return false on validation error and undefined in all other cases
         if (success === false) {
             // Explicitly false = validation error
             Helpers.hideSpinner();
@@ -1787,7 +1825,7 @@ var ContentBuilder;
     }
     ContentBuilder.showColumnSelector = showColumnSelector;
     function popEditorOut() {
-        window.open(location.href + "&popout=true", "_blank");
+        window.open("".concat(location.href, "&popout=true"), "_blank");
     }
     ContentBuilder.popEditorOut = popEditorOut;
     function closeVisualEditor() {
@@ -1803,7 +1841,7 @@ var ContentBuilder;
         if (state.grids && state.grids.length > 0) {
             Helpers.showSpinner();
             window.addEventListener("unload", restoreTree);
-            location.href = "/Admin/Content/ParagraphList.aspx?PageID=" + state.grids[0].pageId + "&NavigatorSync=RefreshParentAndSelectPage";
+            location.href = "/Admin/Content/ParagraphList.aspx?PageID=".concat(state.grids[0].pageId, "&NavigatorSync=RefreshParentAndSelectPage");
         }
         else {
             //TODO: Figure out how to redirect to content tree without page id.

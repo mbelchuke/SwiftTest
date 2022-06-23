@@ -39,8 +39,8 @@ Dynamicweb.Items.ItemTypeUsage.openNamedListEdit = function (pageID, namedListId
     location = "/Admin/Content/Items/Editing/NamedItemListEdit.aspx?PageID=" + pageID + '&NamedItemList=' + namedListId;
 };
 
-Dynamicweb.Items.ItemTypeUsage.openParagraphEdit = function (paragraphID) {
-    location = "/Admin/Content/ParagraphEdit.aspx?ID=" + paragraphID;
+Dynamicweb.Items.ItemTypeUsage.openParagraphEdit = function (paragraphID, pageID) {
+    location = "/Admin/Content/ParagraphEdit.aspx?ID=" + paragraphID + "&PageID=" + pageID;
 };
 
 Dynamicweb.Items.ItemTypeUsage.openUserEdit = function (userID) {

@@ -440,3 +440,42 @@ div.item-type-container .error{
     .presets .preset:hover .preset-title {
         color: #fff;
     }
+
+.item-field-value-container {
+    position: relative;
+}
+
+input.item-field[type="range"] {
+    position: relative;
+    line-height: 25px;
+    height: 35px;
+    padding: 5px;
+}
+
+input.item-field[type="range"]::before {
+    position: absolute;
+    content: attr(min);
+    right: 100%;
+    padding-right: 5px;
+    width: 100px;
+    text-align: right;
+}
+
+input.item-field[type="range"]::after {
+    position: absolute;
+    content: attr(max);
+    left: 100%;
+    padding-left: 5px;
+    width: 100px;
+}
+
+.item-field-value-container output {
+    background: #ededed;
+    color: inherit;
+    padding: 3px;
+    position: absolute;
+    border-radius: 5px;
+    line-height: 1;
+    bottom: 80%;
+    transform: translateX(-50%);
+}

@@ -2080,7 +2080,7 @@ var _MetaKeywordsCounterMaxId = '<%=MetaKeywordsCounterMax.ClientID%>';
                                             </td>
                                             <td>
                                                 <div class="image-validator-container">
-                                                    <dw:FileManager ID="ProductImageSmall" Name="ProductImageSmall" runat="server" Extensions="jpg,gif,png,swf,pdf,webp" CssClass="NewUIinput" OnChange="UpdateProductImage(1);" FullPath="true" />
+                                                    <dw:FileManager ID="ProductImageSmall" Name="ProductImageSmall" runat="server" Extensions="jpg,gif,png,swf,pdf,webp,tif,tiff" CssClass="NewUIinput" OnChange="UpdateProductImage(1);" FullPath="true" />
                                                     <%=GetValidateSpanBlock(ProductDataBaseField.ProductImageSmall, "ProductImageSmall")%>
                                                 </div>
                                             </td>
@@ -2091,7 +2091,7 @@ var _MetaKeywordsCounterMaxId = '<%=MetaKeywordsCounterMax.ClientID%>';
                                             </td>
                                             <td>
                                                 <div class="image-validator-container">
-                                                <dw:FileManager ID="ProductImageMedium" Name="ProductImageMedium" runat="server" Extensions="jpg,gif,png,swf,pdf,webp" CssClass="NewUIinput" OnChange="UpdateProductImage(2);"  FullPath="true" />
+                                                <dw:FileManager ID="ProductImageMedium" Name="ProductImageMedium" runat="server" Extensions="jpg,gif,png,swf,pdf,webp,tif,tiff" CssClass="NewUIinput" OnChange="UpdateProductImage(2);"  FullPath="true" />
                                                 <%=GetValidateSpanBlock(ProductDataBaseField.ProductImageMedium, "ProductImageMedium")%>
                                                 </div>
                                             </td>
@@ -2102,7 +2102,7 @@ var _MetaKeywordsCounterMaxId = '<%=MetaKeywordsCounterMax.ClientID%>';
                                             </td>
                                             <td>
                                                 <div class="image-validator-container">
-                                                <dw:FileManager ID="ProductImageLarge" Name="ProductImageLarge" runat="server" Extensions="jpg,gif,png,swf,pdf,webp" CssClass="NewUIinput" OnChange="UpdateProductImage(3);" FullPath="true" />
+                                                <dw:FileManager ID="ProductImageLarge" Name="ProductImageLarge" runat="server" Extensions="jpg,gif,png,swf,pdf,webp,tif,tiff" CssClass="NewUIinput" OnChange="UpdateProductImage(3);" FullPath="true" />
                                                 <%=GetValidateSpanBlock(ProductDataBaseField.ProductImageLarge, "ProductImageLarge")%>
                                                 </div>
                                             </td>

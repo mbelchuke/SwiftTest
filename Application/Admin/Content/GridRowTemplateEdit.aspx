@@ -33,7 +33,7 @@
             <dwc:GroupBox runat="server">
                 <dwc:InputText runat="server" ID="TemplateName" Label="Navn" ValidationMessage="" MaxLength="255" />
                 <dwc:InputText runat="server" ID="TemplateDescription" Label="Beskrivelse" MaxLength="255" />
-                <dw:FileManager runat="server" ID="TemplateImage" Name="TemplateImage"  Label="Image" Extensions="jpg,gif,png,swf,webp" />
+                <dw:FileManager runat="server" ID="TemplateImage" Name="TemplateImage"  Label="Image" Extensions="jpg,gif,png,swf,webp,tif,tiff" />
                 <dwc:RadioGroup runat="server" ID="TemplateCategoryType" Name="TemplateCategoryType" Label="Categories" Info="" SelectedValue="new" >
                     <dwc:RadioButton runat="server" ID="TemplateCategoryTypeNew" Label="New" FieldValue="new" OnClick="changeCategoryType()" />
                     <dwc:RadioButton runat="server" ID="TemplateCategoryTypeExisting" Label="Existing" FieldValue="existing" OnClick="changeCategoryType()" />

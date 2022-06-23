@@ -19,7 +19,7 @@
 
     <link rel="stylesheet" href="/Admin/Resources/css/content.min.css" />
     <link rel="stylesheet" href="ContentBuilder.css?v=3" />
-    <script type="text/javascript" src="ContentBuilder.js?v=5"></script>
+    <script type="text/javascript" src="ContentBuilder.js?v=5"></script>    
 </head>
 <body class="boxed-fields sw-toggled">
     <div class="action-menu">

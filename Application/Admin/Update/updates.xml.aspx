@@ -82,7 +82,7 @@
     </package>
 
     <package version="2156" releasedate="17-02-2021">
-        <setting key="/Globalsettings/Ecom/Product/Details/Extensions" value="jpg,jpeg,png,bmp,tiff,pdf,docx,xlsx,ppt,avi,webp" overwrite="true" />
+        <setting key="/Globalsettings/Ecom/Product/Details/Extensions" value="jpg,jpeg,png,bmp,tif,tiff,pdf,docx,xlsx,ppt,avi,webp" overwrite="true" />
     </package>
 
     <package version="2155" releasedate="12-01-2021">

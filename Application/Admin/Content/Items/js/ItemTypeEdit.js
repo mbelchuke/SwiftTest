@@ -394,7 +394,10 @@ Dynamicweb.Items.ItemTypeEdit.prototype.initialize = function () {
 
         // Autocompletion for category field
         new Ajax.Autocompleter('txCategory', 'txCategoryAutocompleteMenu', '/Admin/Content/Items/ItemTypes/ItemTypeEdit.aspx?AJAX=CategoryAutocompletion', {
-            indicator: 'txCategoryAutocompleteIndicator'
+            indicator: 'txCategoryAutocompleteIndicator',
+            onShow: (element, update) => {
+                Effect.Appear(update, { duration: 0.15 });
+            }
         });
 
         $('edit-options-activator').observe('click', function () {

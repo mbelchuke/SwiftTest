@@ -523,6 +523,10 @@ class TranslateProcessor {
     }
 
     run() {
+		if (!this.to.rows || !this.from.rows) {
+			return;
+		}
+		
         const CHUNK_SIZE = 25;
         let chunks = this.splitList(this.from.rows, CHUNK_SIZE);
         this.progressBar.total = chunks.length;

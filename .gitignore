@@ -361,3 +361,4 @@ Files/Files/*.license
 /Files/Files/System/_bannedIps.txt
 /Files/Files/DigitalAssets
 /Files/*Translations.xml
+/Files/Files/GlobalSettings.Database.Config
