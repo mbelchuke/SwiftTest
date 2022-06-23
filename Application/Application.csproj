@@ -6288,6 +6288,12 @@
     <Content Include="CHANGELOG.txt" />
     <Content Include="DW_ReadMe.txt" />
     <Content Include="Global.asax" />
+    <Content Include="ImageGlue7-32.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="ImageGlue7-64.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="LICENSE.txt" />
     <Content Include="ReadMe.txt" />
     <Content Include="Web.config" />
