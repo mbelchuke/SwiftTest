@@ -102,7 +102,12 @@
 			@RenderImage(posterSizeBase)
 		}
 
-		if (!string.IsNullOrEmpty(Model.Item.GetString("Title")) || !string.IsNullOrEmpty(Model.Item.GetString("Text")) || link != null && !string.IsNullOrEmpty(link.Url) || link2 != null && !string.IsNullOrEmpty(link2.Url))
+		if (
+			!string.IsNullOrEmpty(Model.Item.GetString("Title")) || 
+			Model.Item?.GetBoolean("HideTitle") == false || 
+			!string.IsNullOrEmpty(Model.Item.GetString("Text")) || 
+			link != null && !string.IsNullOrEmpty(link.Url) || 
+			link2 != null && !string.IsNullOrEmpty(link2.Url))
 		{
 			<div class="container-xl h-100 px-0">
 				<div class="h-100 position-relative d-flex flex-column gap-3 gap-md-4@(posterPaddingClass)@(alignment)@(posterHeightClass)" id="Poster_@Pageview.CurrentParagraph.ID">
@@ -121,7 +126,12 @@
 			@RenderImage(posterSizeBase)
 		}
 
-		if (!string.IsNullOrEmpty(Model.Item.GetString("Title")) || !string.IsNullOrEmpty(Model.Item.GetString("Text")) || link != null && !string.IsNullOrEmpty(link.Url) || link2 != null && !string.IsNullOrEmpty(link2.Url))
+		if (
+			!string.IsNullOrEmpty(Model.Item.GetString("Title")) || 
+			Model.Item?.GetBoolean("HideTitle") == false || 
+			!string.IsNullOrEmpty(Model.Item.GetString("Text")) ||
+			link != null && !string.IsNullOrEmpty(link.Url) || 
+			link2 != null && !string.IsNullOrEmpty(link2.Url))
 		{
 			if (string.IsNullOrEmpty(Model.Item.GetString("Image")))
 			{
@@ -156,6 +166,7 @@
 @helper RenderImage(string posterSizeBase)
 {
 	string image = Model.Item.GetString("Image", string.Empty);
+	string imgAltText = Model.Item.GetString("PosterAltText", string.Empty);
 
 	if (!string.IsNullOrEmpty(image))
 	{
@@ -171,10 +182,12 @@
 
 		var parms = new Dictionary<string, object>();
 		parms.Add("columns", Model.GridRowColumnCount);
-		parms.Add("cssClass", "h-100 w-100");
-
+		parms.Add("alt", imgAltText);
+		
 		if (posterSizeBase == "height")
 		{
+			parms.Add("cssClass", "h-100 w-100");
+
 			<div class="position-absolute top-0 bottom-0 end-0 start-0@(imageFilter)">
 				@RenderPartial("Components/Image.cshtml", Model.Item.GetFile("Image") ?? new Dynamicweb.Frontend.FileViewModel(), parms)
 			</div>
@@ -182,6 +195,12 @@
 
 		if (posterSizeBase == "aspect-ratio")
 		{
+			if (ratio == string.Empty)
+			{
+				parms.Add("cssClass", "mh-100 mw-100");
+				parms.Add("fullwidth", true);
+			}
+			
 			<figure class="m-0@(imageFilter)@(ratioCssClass)" @ratioVariable>
 				@RenderPartial("Components/Image.cshtml", Model.Item.GetFile("Image") ?? new Dynamicweb.Frontend.FileViewModel(), parms)
 			</figure>
@@ -199,9 +218,13 @@
 		string maxWidth = Model.Item.GetRawValueString("TextReadability", string.Empty) == "max-width-on" ? "mw-75ch d-inline-block" : string.Empty;
 		string titleFontSize = Model.Item.GetRawValueString("TitleFontSize", "display-1");
 
-		<h2 class="@titleFontSize mb-0">
+		string headingLevel = Model.Item.GetString("HeadingLevel", "h2");
+		string headingLevelStart = $"<{headingLevel} class=\"{titleFontSize} mb-0\">";
+		string headingLevelStop = $"</{headingLevel}>";
+
+		@headingLevelStart
 			<span class="@maxWidth">@title</span>
-		</h2>
+		@headingLevelStop
 	}
 }
 
@@ -325,7 +348,8 @@
 		string buttonStyle2 = Model.Item.GetRawValueString("ButtonStyle2", "secondary");
 		buttonStyle2 = buttonStyle2 == "primary" ? " btn-primary" : buttonStyle2;
 		buttonStyle2 = buttonStyle2 == "secondary" ? " btn-secondary" : buttonStyle2;
-		string target = link.IsExternal ? "target=\"_blank\"" : string.Empty;
+		string target = Pageview.AreaSettings.GetBoolean("OpenLinksInNewTab") && link.IsExternal ? "target=\"_blank\"" : string.Empty;
+		string rel = Pageview.AreaSettings.GetBoolean("OpenLinksInNewTab") && link.IsExternal ? "rel=\"noopener\"" : string.Empty;
 		string buttonLabel = Model.Item.GetString("ButtonLabel", string.Empty);
 		string buttonLabel2 = Model.Item.GetString("ButtonLabel2", string.Empty);
 		string stretchedLink = Model.Item.GetRawValueString("StretchedLink", "column-not-clickable");
@@ -375,11 +399,11 @@
 			{
 				if (!string.IsNullOrEmpty(buttonLabel))
 				{
-					<a href="@link.Url" @target class="text-nowrap btn@(buttonStyle)@(buttonSize)@(stretchedLinkClass)">@buttonLabel</a>
+					<a href="@link.Url" @target @rel class="text-nowrap btn@(buttonStyle)@(buttonSize)@(stretchedLinkClass)">@buttonLabel</a>
 				}
 				else
 				{
-					<a href="@link.Url" @target class="@(stretchedLinkClass)">
+					<a href="@link.Url" @target @rel class="@(stretchedLinkClass)">
 						<span class="visually-hidden">@Model.Item.GetString("Title")</span>
 					</a>
 				}
@@ -389,11 +413,11 @@
 			{
 				if (!string.IsNullOrEmpty(buttonLabel2))
 				{
-					<a href="@link2.Url" @target class="text-nowrap btn@(buttonStyle2)@(buttonSize)@(stretchedLinkClass2)">@buttonLabel2</a>
+					<a href="@link2.Url" @target @rel class="text-nowrap btn@(buttonStyle2)@(buttonSize)@(stretchedLinkClass2)">@buttonLabel2</a>
 				}
 				else
 				{
-					<a href="@link2.Url" @target class="@(stretchedLinkClass)">
+					<a href="@link2.Url" @target @rel class="@(stretchedLinkClass)">
 						<span class="visually-hidden">@Model.Item.GetString("Title")</span>
 					</a>
 				}

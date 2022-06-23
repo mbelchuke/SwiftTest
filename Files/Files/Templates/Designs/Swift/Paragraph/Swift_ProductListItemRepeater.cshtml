@@ -1,17 +1,39 @@
 @inherits Dynamicweb.Rendering.ViewModelTemplate<Dynamicweb.Frontend.ParagraphViewModel>
 @using Dynamicweb.Ecommerce.ProductCatalog
+@using Dynamicweb.Core
 @using Dynamicweb.Ecommerce.CustomerExperienceCenter.Favorites
+
+@functions
+{
+	string liveInfoClass = "";
+}
 
 @{ 
 	string theme = !string.IsNullOrWhiteSpace(Model.Item.GetRawValueString("Theme")) ? " theme " + Model.Item.GetRawValueString("Theme").Replace(" ", "").Trim().ToLower() : "";
+	
+	string productInfoFeed = "";
+	bool isLazyLoadingForProductInfoEnabled = Dynamicweb.Ecommerce.DynamicwebLiveIntegration.TemplatesHelper.IsLazyLoadingForProductInfoEnabled;
+	if (isLazyLoadingForProductInfoEnabled)
+	{
+		if (Dynamicweb.Context.Current.Items.Contains("ProductInfoFeed"))
+		{
+			productInfoFeed = Dynamicweb.Context.Current.Items["ProductInfoFeed"]?.ToString();
+			if (!string.IsNullOrEmpty(productInfoFeed))
+			{
+				productInfoFeed = $"data-product-info-feed=\"{productInfoFeed}\"";
+			}
+		}
+		liveInfoClass = "js-live-info";
+	}
+	
 }
 
 @if (!string.IsNullOrEmpty(theme)) {
-	<div class="h-100@(theme) item_@Model.Item.SystemName.ToLower()">
+	<div class="h-100@(theme) item_@Model.Item.SystemName.ToLower()" @productInfoFeed>
 		@RenderProductList()
 	</div>
 } else {
-	<div class="item_@Model.Item.SystemName.ToLower()">
+	<div class="item_@Model.Item.SystemName.ToLower()" @productInfoFeed>
 		@RenderProductList()
 	</div>
 }
@@ -21,7 +43,7 @@
 
 	ProductListViewModel productList = new ProductListViewModel();
 
-	ProductListViewModelSettings productSetting = new ProductListViewModelSettings
+	ProductListViewModelSettings productListSetting = new ProductListViewModelSettings
 	{
 		LanguageId = Dynamicweb.Ecommerce.Common.Context.LanguageID,
 		CurrencyCode = Dynamicweb.Ecommerce.Common.Context.Currency.Code,
@@ -33,7 +55,7 @@
 	int maxProductsCounter = 0;
 
 	if (Dynamicweb.Context.Current.Items.Contains("ProductList"))
-	{
+	{	
 		productList = (ProductListViewModel)Dynamicweb.Context.Current.Items["ProductList"];
 	}
 	else if (Pageview.Item["DummyProductGroup"] != null)
@@ -42,27 +64,53 @@
 		ProductListViewModel groupList = pageViewModel.Item.GetValue("DummyProductGroup") != null ? pageViewModel.Item.GetValue("DummyProductGroup") as ProductListViewModel : new ProductListViewModel();
 
 		if (groupList?.Group?.Id != null) {
-			productList = ViewModelFactory.CreateView(productSetting, groupList.Group.Id);
+			productList = ViewModelFactory.CreateView(productListSetting, groupList.Group.Id);
 			Dynamicweb.Context.Current.Items.Add("ProductList", productList);
 		} else {
-			productList = ViewModelFactory.CreateView(productSetting, Dynamicweb.Ecommerce.Services.ProductGroups.GetGroups(Dynamicweb.Ecommerce.Common.Context.LanguageID).FirstOrDefault().Id);
+			productList = ViewModelFactory.CreateView(productListSetting, Dynamicweb.Ecommerce.Services.ProductGroups.GetGroups(Dynamicweb.Ecommerce.Common.Context.LanguageID).FirstOrDefault().Id);
 
 			Dynamicweb.Context.Current.Items.Add("ProductList", productList);
 		}
 	}
 	else if (Pageview.Item["DummyProductGroup"] == null) {
-		productList = ViewModelFactory.CreateView(productSetting, Dynamicweb.Ecommerce.Services.ProductGroups.GetGroups(Dynamicweb.Ecommerce.Common.Context.LanguageID).FirstOrDefault().Id);
+		productList = ViewModelFactory.CreateView(productListSetting, Dynamicweb.Ecommerce.Services.ProductGroups.GetGroups(Dynamicweb.Ecommerce.Common.Context.LanguageID).FirstOrDefault().Id);
 		Dynamicweb.Context.Current.Items.Add("ProductList", productList);
 	}
 
 	if (Pageview.Page.Item.SystemName == "Swift_ProductListComponentEdit") { 
+		if (productList.TotalProductsCount == 0) { 
+			ProductViewModelSettings productSetting = new ProductViewModelSettings
+			{
+				LanguageId = Dynamicweb.Ecommerce.Common.Context.LanguageID,
+				CurrencyCode = Dynamicweb.Ecommerce.Common.Context.Currency.Code,
+				CountryCode = Dynamicweb.Ecommerce.Common.Context.Country.Code2,
+				ShopId = Pageview.Area.EcomShopId
+			};
+
+			foreach (var product in Dynamicweb.Ecommerce.Services.Products.GetLastActiveProducts(3, Dynamicweb.Ecommerce.Common.Context.LanguageID, false)) { 
+				var productView = ViewModelFactory.CreateView(productSetting, product.Id);
+				productList.Products.Add(productView);
+			}
+
+			Dynamicweb.Context.Current.Items["ProductList"] = productList;
+		}
+
 		productList.TotalProductsCount = 3;
 		productList.PageSize = 3;
 		maxProductsCounter = 3;
 	}
 
 	string detailsPageLink = Dynamicweb.Context.Current.Items["DetailsPageLink"] != null ? Dynamicweb.Context.Current.Items["DetailsPageLink"].ToString() : "";
-	string url = Dynamicweb.Context.Current.Request.RawUrl;
+	
+	string url = Pageview.SearchFriendlyUrl;
+	url = url.LastIndexOf("?") != -1 ? url.Substring(0, url.LastIndexOf("?")) : url;
+
+	//Fix for non-friendly urls
+	if (Dynamicweb.Context.Current.Request.QueryString.Get("GroupID") != null)
+	{
+		string groupId = Dynamicweb.Context.Current.Request.QueryString.Get("GroupID");
+		url += "?GroupID=" + groupId;
+	}
 
 	if (productList.TotalProductsCount > 0) {
 		int pageSizeSetting = 30;
@@ -70,6 +118,7 @@
 		pageSize += pageSizeSetting;
 
 		int loadedProducts = productList.PageSize > productList.TotalProductsCount ? productList.TotalProductsCount : productList.PageSize;
+		string searchQuery = !string.IsNullOrEmpty(Dynamicweb.Context.Current.Request.QueryString.Get("q")) ? Dynamicweb.Context.Current.Request.QueryString.Get("q") : "";
 
 		int listItemSourcePageId = Model.Item.GetInt32("ListComponentSource");
 		var page = Dynamicweb.Services.Pages.GetPage(listItemSourcePageId);
@@ -88,7 +137,19 @@
 			gridColumnMobileSize = gridColumnMobileSize == "list" ? "g-col-12" : gridColumnMobileSize;
 			gridColumnMobileSize = gridColumnMobileSize == "2-columns" ? "g-col-6" : gridColumnMobileSize;
 
-			string listItemTheme = !string.IsNullOrWhiteSpace(pageViewModel.Item.GetRawValueString("Theme")) ? " theme " + pageViewModel.Item.GetRawValueString("Theme").Replace(" ", "").Trim().ToLower() : "";
+			string listItemTheme = " theme " + pageViewModel.Item.GetRawValueString("Theme", string.Empty).Replace(" ", "").Trim().ToLower();
+			string listItemPadding = pageViewModel.Item.GetRawValueString("ContentPadding", string.Empty);
+			string listItemPaddingClass = string.Empty;
+
+			switch(listItemPadding)
+			{
+				case "small":
+					listItemPaddingClass = " p-2 p-xl-3";
+					break;
+				case "large":
+					listItemPaddingClass = " p-3 p-xl-4";
+					break;
+			}
 
 			<div class="grid">
 				@foreach (ProductViewModel product in productList.Products)
@@ -111,7 +172,7 @@
 						}
 
 						if (Model.Item.GetString("ListComponentSource") != null) {
-							<article class="@gridColumnMobileSize @gridColumnSize @listItemTheme p-3 d-flex flex-column position-relative product" itemscope itemtype="https://schema.org/Product">
+							<article class="@gridColumnMobileSize @gridColumnSize @listItemTheme @listItemPaddingClass d-flex flex-column position-relative product @liveInfoClass" data-product-id="@product.Id" itemscope itemtype="https://schema.org/Product">
 								<a href="@link" class="text-decoration-none stretched-link"></a>
 						
 								@RenderGrid(listItemSourcePageId)
@@ -127,7 +188,7 @@
 				<div class="text-center">
 					<div class="opacity-85 mb-3">@loadedProducts @Translate("out of") @productList.TotalProductsCount @Translate("products")</div>
 					@if (productList.PageCount != 1 && maxProductsCounter == 0) {
-						string sortBySelection = Dynamicweb.Context.Current.Request?.Form["SortBy"] ?? "NameForSort";
+						string sortBySelection = Dynamicweb.Context.Current.Request?.Form["SortBy"] ?? "Relevance";
 						sortBySelection = !string.IsNullOrEmpty(Dynamicweb.Context.Current.Request.QueryString.Get("SortBy")) ? Dynamicweb.Context.Current.Request.QueryString.Get("SortBy") : sortBySelection;
 
 						<form method="get" action="@url" data-response-target-element="content" class="w-100">
@@ -147,15 +208,32 @@
 								}
 							}
 
-							@if (productList?.Group?.Id != null) {
-								<input type="hidden" name="GroupId" value="@productList.Group.Id" />
-							}
-
 							<input type="hidden" name="PageSize" value="@pageSize" />
 							<input type="hidden" name="SortBy" value="@sortBySelection" />
 							<input type="hidden" name="RequestType" value="UpdateList" />
 
-							<button class="btn btn-primary mb-3" type="button" onclick="swift.ProductList.Update(event)" id="LoadMoreButton_@Model.ID">@Translate("Load more products")</button>
+							@{ 
+								string nextPageLink = "/Default.aspx?ID=" + Pageview.Page.ID + "&PageSize=" + pageSize + "&SortBy=" + sortBySelection;
+
+								foreach (FacetGroupViewModel facetGroup in productList.FacetGroups)
+								{
+									foreach (FacetViewModel facetItem in facetGroup.Facets)
+									{
+										foreach (FacetOptionViewModel facetOption in facetItem.Options)
+										{
+											if (facetOption.Selected)
+											{
+												nextPageLink += "&" + facetItem.QueryParameter + "=[" + facetOption.Value + "]";
+											}
+										}
+									}
+								}
+
+								nextPageLink += productList?.Group?.Id != null ? "&GroupID=" + productList.Group.Id : "";
+								nextPageLink += !string.IsNullOrEmpty(searchQuery) ? "&q=" + searchQuery : "";
+							}
+
+							<a href="@nextPageLink" class="btn btn-primary" type="button" onclick="swift.ProductList.Update(event)" id="LoadMoreButton_@Model.ID">@Translate("Load more products")</a>
 						</form>
 					}
 				</div>
@@ -186,14 +264,30 @@
 			</div>
 		}
 	} else {
-		if (!isVisualEditor) {
-			<div class="alert alert-dark m-0">
-				@Translate("We did not find anything matching your search result")
-			</div>
-		} else {
+		string noProductsFoundMessage = !string.IsNullOrEmpty(Model.Item.GetString("NoProductsFoundMessage")) ? Model.Item.GetString("NoProductsFoundMessage") : Translate("We did not find anything matching your search result");
+		bool hasSubgroups = false;
+		
+		if (productList.SubGroups != null)
+        {
+			hasSubgroups = productList.SubGroups.Any();
+        }
+
+		if (!Model.Item.GetBoolean("HideNoProductsFoundMessage")) { 
+			if (!isVisualEditor)
+            {
+				<div class="alert alert-dark m-0" role="alert">
+					@noProductsFoundMessage
+				</div>
+            } else {
+				<div class="alert alert-dark m-0" role="alert">
+					@Translate("Product list: The list will be shown here, if any")
+				</div>
+			}
+		} else if (!hasSubgroups)
+        {
 			<div class="alert alert-dark m-0" role="alert">
-				<span>@Translate("Product list: The list will be shown here, if any")</span>
+				@noProductsFoundMessage
 			</div>
-		}
+        }
 	}
 }
